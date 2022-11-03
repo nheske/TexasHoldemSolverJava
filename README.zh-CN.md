@@ -100,7 +100,7 @@ PokerSolver = JClass('icybee.solver.runtime.PokerSolver')
 
 ```python
 ps_holdem = PokerSolver("Dic5Compairer",
-    "./resources/compairer/card5_dic_sorted.txt", #加载的compairer字典文件,用于比较牌面大小,holdem和短牌使用不同的字典
+    "./resources/comparer/card5_dic_sorted.txt", #加载的compairer字典文件,用于比较牌面大小,holdem和短牌使用不同的字典
     2598961, # 字典行数
     ['A', 'K', 'Q', 'J', 'T', '9', '8', '7', '6', '5', '4', '3'], # 扑克牌牌面
     ['h', 's', 'd', 'c'] # 扑克牌花色

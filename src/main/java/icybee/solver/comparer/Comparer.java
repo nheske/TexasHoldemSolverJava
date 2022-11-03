@@ -1,4 +1,4 @@
-package icybee.solver.compairer;
+package icybee.solver.comparer;
 
 import icybee.solver.Card;
 
@@ -7,7 +7,7 @@ import java.util.List;
 
 /**
  * Created by huangxuefeng on 2019/10/6.
- * Abstract class Compairer
+ * Abstract class Comparer
  */
 public abstract class Comparer {
     String dic_dir;

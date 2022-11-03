@@ -48,7 +48,7 @@ Download the [release package](https://github.com/bupticybee/TexasHoldemSolverJa
 
 Install is done. It's that simple.
 
-```RiverSolver.jar``` is the solver program file,```java_interface.py``` is the sample code for calling solver trough python calls. It contains the following test cases:
+```RiverSolver.jar``` is the solver program file,```java_interface.py``` is the sample code for calling solver through python calls. It contains the following test cases:
 
 - testcase for short flop situation
 - testcase for short turn situation
@@ -109,7 +109,7 @@ Initialize PokerSolver class, PokerSolver is used to do the optimal strategy fin
 
 ```python
 ps_holdem = PokerSolver("Dic5Compairer",
-    "./resources/compairer/card5_dic_sorted.txt", # Load hand compair dictionary file. Holdem and shortdeck use different dictionary file
+    "./resources/comparer/card5_dic_sorted.txt", # Load hand compair dictionary file. Holdem and shortdeck use different dictionary file
     2598961, # valid line of dictionary file
     ['A', 'K', 'Q', 'J', 'T', '9', '8', '7', '6', '5', '4', '3'], # figure of cards
     ['h', 's', 'd', 'c'] # pattern of cards
@@ -234,13 +234,13 @@ Normally compiling the release package manually is not required. It can be direc
 However if you intend to modify this project, recompiling is required. TexasHoldemSolverJava is a IDEA project, an IDEA environment is required to compile the release package, if you want to compile the release package, please follow the following instruction：
 1. install IntellIJ IDEA
 2. download TexasHoldemSolverJava from github and load to IntellIJ IDEA
-3. press build -> build project to compile the projet from source
+3. press build -> build project to compile the project from source
 4. press build -> build artifacts -> all artifacts -> build to generate the release package
 5. the release package can be found in the ```out``` folder in project root
 
 ## benchmarks
 
-The speed compair with piosolver listed below, turn and river's speed is comparable with piosolver , flop is much slower due to game tree and lack of optimization.
+The speed compares with piosolver listed below, turn and river's speed is comparable with piosolver , flop is much slower due to game tree and lack of optimization.
 
 |                       | flop sample | turn sample | river sample |
 | --------------------- | ----------- | ----------- | ------------ |

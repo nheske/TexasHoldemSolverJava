@@ -1,6 +1,6 @@
 package icybee.solver;
 
-import icybee.solver.compairer.Compairer;
+import icybee.solver.comparer.Comparer;
 import icybee.solver.exceptions.BoardNotFoundException;
 import icybee.solver.ranges.PrivateCards;
 import icybee.solver.solver.CfrPlusRiverSolver;
@@ -30,7 +30,7 @@ public class TexasHoldemSolverTest
     /**
      * Rigorous Test :-)
      */
-    static Compairer compairer = null;
+    static Comparer comparer = null;
     static Deck deck = null;
 
     Config loadConfig(String conf_name){
@@ -56,9 +56,9 @@ public class TexasHoldemSolverTest
         //String config_name = "yamls/rule_shortdeck_flopsolver.yaml";
         Config config = this.loadConfig(config_name);
 
-        if(TexasHoldemSolverTest.compairer == null) {
+        if(TexasHoldemSolverTest.comparer == null) {
             try {
-                TexasHoldemSolverTest.compairer = SolverEnvironment.compairerFromConfig(config);
+                TexasHoldemSolverTest.comparer = SolverEnvironment.compairerFromConfig(config);
                 TexasHoldemSolverTest.deck = SolverEnvironment.deckFromConfig(config);
             } catch (Exception e) {
                 e.printStackTrace();
@@ -87,9 +87,9 @@ public class TexasHoldemSolverTest
                     new Card("9s")
             );
 
-            Compairer.CompairResult cr = TexasHoldemSolverTest.compairer.compair(private1,private2,board);
+            Comparer.CompareResult cr = TexasHoldemSolverTest.comparer.compair(private1,private2,board);
             System.out.println(cr);
-            assertTrue(cr == Compairer.CompairResult.LARGER);
+            assertTrue(cr == Comparer.CompareResult.LARGER);
         } catch (Exception e) {
             e.printStackTrace();
             assertTrue(false);
@@ -115,9 +115,9 @@ public class TexasHoldemSolverTest
                     new Card("7h")
             );
 
-            Compairer.CompairResult cr = TexasHoldemSolverTest.compairer.compair(private1,private2,board);
+            Comparer.CompareResult cr = TexasHoldemSolverTest.comparer.compair(private1,private2,board);
             System.out.println(cr);
-            assertTrue(cr == Compairer.CompairResult.EQUAL);
+            assertTrue(cr == Comparer.CompareResult.EQUAL);
         } catch (Exception e) {
             e.printStackTrace();
             assertTrue(false);
@@ -143,9 +143,9 @@ public class TexasHoldemSolverTest
                     new Card("7h")
             );
 
-            Compairer.CompairResult cr = TexasHoldemSolverTest.compairer.compair(private1,private2,board);
+            Comparer.CompareResult cr = TexasHoldemSolverTest.comparer.compair(private1,private2,board);
             System.out.println(cr);
-            assertTrue(cr == Compairer.CompairResult.SMALLER);
+            assertTrue(cr == Comparer.CompareResult.SMALLER);
         } catch (Exception e) {
             e.printStackTrace();
             assertTrue(false);
@@ -166,7 +166,7 @@ public class TexasHoldemSolverTest
                 new Card("7s")
         );
 
-        int rank = TexasHoldemSolverTest.compairer.get_rank(private_cards,board);
+        int rank = TexasHoldemSolverTest.comparer.get_rank(private_cards,board);
         System.out.println(rank);
         assertTrue(rank > 0);
     }
@@ -314,8 +314,8 @@ public class TexasHoldemSolverTest
                 (new Card("7s").getCardInt())
         };
         try {
-            long board_int1 = compairer.get_rank(board1_private,board1_public);
-            long board_int2 = compairer.get_rank(board2_private,board2_public);
+            long board_int1 = comparer.get_rank(board1_private,board1_public);
+            long board_int2 = comparer.get_rank(board2_private,board2_public);
             System.out.println(board_int1);
             System.out.println(board_int2);
             assertTrue(board_int1 == board_int2);
@@ -380,7 +380,7 @@ public class TexasHoldemSolverTest
                 , player1Range
                 , player2Range
                 , initialBoard
-                , TexasHoldemSolverTest.compairer
+                , TexasHoldemSolverTest.comparer
                 , TexasHoldemSolverTest.deck
                 ,100
                 ,false
@@ -446,7 +446,7 @@ public class TexasHoldemSolverTest
                 , player1Range
                 , player2Range
                 , initialBoard
-                , TexasHoldemSolverTest.compairer
+                , TexasHoldemSolverTest.comparer
                 , TexasHoldemSolverTest.deck
                 ,100
                 ,false
@@ -510,7 +510,7 @@ public class TexasHoldemSolverTest
                 , player1Range
                 , player2Range
                 , initialBoard
-                , TexasHoldemSolverTest.compairer
+                , TexasHoldemSolverTest.comparer
                 , TexasHoldemSolverTest.deck
                 ,100
                 ,false
@@ -574,7 +574,7 @@ public class TexasHoldemSolverTest
                 , player1Range
                 , player2Range
                 , initialBoard
-                , TexasHoldemSolverTest.compairer
+                , TexasHoldemSolverTest.comparer
                 , TexasHoldemSolverTest.deck
                 ,100
                 ,false
@@ -638,7 +638,7 @@ public class TexasHoldemSolverTest
                 , player1Range
                 , player2Range
                 , initialBoard
-                , TexasHoldemSolverTest.compairer
+                , TexasHoldemSolverTest.comparer
                 , TexasHoldemSolverTest.deck
                 ,100
                 ,false

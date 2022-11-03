@@ -1,4 +1,4 @@
-package icybee.solver.compairer;
+package icybee.solver.comparer;
 
 import java.io.*;
 import java.util.*;

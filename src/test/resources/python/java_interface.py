@@ -14,13 +14,13 @@ class TestSolver(unittest.TestCase):
         with open('resources/yamls/general_rule.yaml') as fhdl:
             self.conf = yaml.load(fhdl)
         self.ps_shortdeck = PokerSolver("Dic5Compairer",
-                                        "./resources/compairer/card5_dic_sorted_shortdeck.txt",
+                                        "./resources/comparer/card5_dic_sorted_shortdeck.txt",
                                         376993,
                                         ['A', 'K', 'Q', 'J', 'T', '9', '8', '7', '6'],
                                         ['h', 's', 'd', 'c']
                                         )
         self.ps_holdem = PokerSolver("Dic5Compairer",
-                                     "./resources/compairer/card5_dic_sorted.txt",
+                                     "./resources/comparer/card5_dic_sorted.txt",
                                      2598961,
                                      ['A', 'K', 'Q', 'J', 'T', '9', '8', '7', '6', '5', '4', '3'],
                                      ['h', 's', 'd', 'c']

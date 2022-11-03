@@ -4,21 +4,18 @@ import javax.swing.*;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 import java.io.File;
-import java.io.FileWriter;
 import java.io.IOException;
 import java.io.PrintStream;
-import java.net.URL;
 import java.util.HashMap;
 import java.util.Map;
 
 import icybee.solver.*;
-import icybee.solver.compairer.Compairer;
+import icybee.solver.comparer.Comparer;
 import icybee.solver.ranges.PrivateCards;
 import icybee.solver.solver.*;
 import icybee.solver.trainable.CfrPlusTrainable;
 import icybee.solver.trainable.DiscountedCfrTrainable;
 import icybee.solver.utils.PrivateRangeConverter;
-import icybee.solver.utils.Range;
 
 public class SolverGui {
 
@@ -70,8 +67,8 @@ public class SolverGui {
     private JCheckBox river_oop_allin;
     private JButton copy;
 
-    private Compairer compairer_holdem = null;
-    private Compairer compairer_shortdeck = null;
+    private Comparer comparer_holdem = null;
+    private Comparer comparer_shortdeck = null;
     private Deck holdem_deck = null;
     private Deck shortdeck_deck = null;
     GameTree game_tree;
@@ -100,20 +97,20 @@ public class SolverGui {
         throw new RuntimeException("load config failed: cannot find config file");
     }
 
-    private void load_compairer() throws IOException {
-        System.out.println("loading holdem compairer dictionary...");
+    private void load_comparer() throws IOException {
+        System.out.println("loading holdem comparer dictionary...");
         String config_name = "resources/yamls/rule_holdem_simple.yaml";
         Config config = this.loadConfig(config_name);
-        this.compairer_holdem = SolverEnvironment.compairerFromConfig(config,false);
+        this.comparer_holdem = SolverEnvironment.compairerFromConfig(config,false);
         this.holdem_deck = SolverEnvironment.deckFromConfig(config);
-        System.out.println("loading holdem compairer dictionary complete");
+        System.out.println("loading holdem comparer dictionary complete");
 
-        System.out.println("loading shortdeck compairer dictionary...");
+        System.out.println("loading shortdeck comparer dictionary...");
         config_name = "resources/yamls/rule_shortdeck_simple.yaml";
         config = this.loadConfig(config_name);
-        this.compairer_shortdeck = SolverEnvironment.compairerFromConfig(config,false);
+        this.comparer_shortdeck = SolverEnvironment.compairerFromConfig(config,false);
         this.shortdeck_deck = SolverEnvironment.deckFromConfig(config);
-        System.out.println("loading shortdeck compairer dictionary complete");
+        System.out.println("loading shortdeck comparer dictionary complete");
     }
 
     float[] parseBetSizes(String betstr){
@@ -226,7 +223,7 @@ public class SolverGui {
     private void initize(){
         System.out.println("initizing...");
         try {
-            load_compairer();
+            load_comparer();
         }catch (java.io.IOException err){
             err.printStackTrace();
         }
@@ -255,14 +252,14 @@ public class SolverGui {
         PrivateCards[] player2Range = PrivateRangeConverter.rangeStr2Cards(player2RangeStr,initialBoard);
         String logfile_name = null;
 
-        Compairer compairer =  mode.getSelectedIndex() == 0 ? this.compairer_holdem:this.compairer_shortdeck;
+        Comparer comparer =  mode.getSelectedIndex() == 0 ? this.comparer_holdem :this.comparer_shortdeck;
         Deck deck = mode.getSelectedIndex() == 0 ? this.holdem_deck:this.shortdeck_deck;
 
         Solver solver = new ParallelCfrPlusSolver(game_tree
                 , player1Range
                 , player2Range
                 , initialBoard
-                , compairer
+                , comparer
                 , deck
                 , Integer.valueOf(iteration.getText())
                 , false

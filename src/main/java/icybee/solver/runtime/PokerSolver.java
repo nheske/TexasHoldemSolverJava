@@ -1,7 +1,7 @@
 package icybee.solver.runtime;
 
 import icybee.solver.*;
-import icybee.solver.compairer.Compairer;
+import icybee.solver.comparer.Comparer;
 import icybee.solver.ranges.PrivateCards;
 import icybee.solver.solver.CfrPlusRiverSolver;
 import icybee.solver.solver.MonteCarolAlg;
@@ -22,7 +22,7 @@ import java.util.Map;
 public class PokerSolver {
     Deck deck;
     GameTree tree;
-    Compairer compairer;
+    Comparer comparer;
 
     Config loadConfig(String conf_name){
         File file = new File(conf_name);
@@ -38,7 +38,7 @@ public class PokerSolver {
 
     public PokerSolver(String compairer_type, String compairer_dic_dir, int compairer_lines, String[] ranks,String[] suits) throws IOException {
         this.deck = new Deck(Arrays.asList(ranks), Arrays.asList(suits));
-        this.compairer = SolverEnvironment.compairerFromFile(compairer_type,compairer_dic_dir,compairer_lines);
+        this.comparer = SolverEnvironment.compairerFromFile(compairer_type,compairer_dic_dir,compairer_lines);
         this.tree = null;
     }
 
@@ -104,7 +104,7 @@ public class PokerSolver {
                     , player1Range
                     , player2Range
                     , initial_board_arr
-                    , compairer
+                    , comparer
                     , deck
                     , iteration_number
                     , debug
@@ -123,7 +123,7 @@ public class PokerSolver {
                     , player1Range
                     , player2Range
                     , initial_board_arr
-                    , compairer
+                    , comparer
                     , deck
                     , iteration_number
                     , debug

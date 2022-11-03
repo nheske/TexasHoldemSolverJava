@@ -17,16 +17,16 @@ import org.paukov.combinatorics3.IGenerator;
  * Created by huangxuefeng on 2019/10/6.
  * This file contains code for a card compairer
  */
-public class Dic5Compairer extends Compairer {
+public class Dic5Comparer extends Comparer {
     //Map<Set<String>,Integer> cards2rank = (Map<Set<String>,Integer>)new HashMap<Set<String>,Integer>();
     Map<Long,Integer> cardslong2rank = (Map<Long,Integer>)new HashMap<Long,Integer>();
 
-    public Dic5Compairer(String dic_dir,int lines) throws IOException {
+    public Dic5Comparer(String dic_dir, int lines) throws IOException {
         super(dic_dir,lines);
         this.load_compairer(dic_dir,lines,true);
     }
 
-    public Dic5Compairer(String dic_dir,int lines,boolean verbose) throws IOException {
+    public Dic5Comparer(String dic_dir, int lines, boolean verbose) throws IOException {
         super(dic_dir,lines);
         this.load_compairer(dic_dir,lines,verbose);
     }
@@ -123,21 +123,21 @@ public class Dic5Compairer extends Compairer {
         return Collections.min(rank_list);
     }
 
-    CompairResult compairRanks(int rank_former,int rank_latter) {
+    CompareResult compairRanks(int rank_former, int rank_latter) {
         if (rank_former < rank_latter) {
             // rank更小的牌更大，0是同花顺
-            return CompairResult.LARGER;
+            return CompareResult.LARGER;
         } else if (rank_former > rank_latter) {
-            return CompairResult.SMALLER;
+            return CompareResult.SMALLER;
         } else {
             // rank_former == rank_latter
-            return CompairResult.EQUAL;
+            return CompareResult.EQUAL;
         }
     }
 
     @Override
     @SuppressWarnings("all")
-    public CompairResult compair(List<Card> private_former,List<Card> private_latter,List<Card> public_board) throws CardsNotFoundException {
+    public CompareResult compair(List<Card> private_former, List<Card> private_latter, List<Card> public_board) throws CardsNotFoundException {
         assert(private_former.size() == 2);
         assert(private_latter.size() == 2);
         assert(public_board.size() == 5);
@@ -151,7 +151,7 @@ public class Dic5Compairer extends Compairer {
 
     }
     @Override
-    public CompairResult compair(int[] private_former,int[] private_latter,int[] public_board) throws CardsNotFoundException, BoardNotFoundException{
+    public CompareResult compair(int[] private_former, int[] private_latter, int[] public_board) throws CardsNotFoundException, BoardNotFoundException{
         assert(private_former.length == 2);
         assert(private_latter.length == 2);
         assert(public_board.length == 5);

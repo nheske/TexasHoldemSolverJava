@@ -97,6 +97,27 @@ public class TexasHoldemSolverTest
     }
 
     @Test
+    public void cardCompareBenchmarkTest(){
+        try {
+            List<Card> board = Arrays.asList(new Card("6c"), new Card("6d"), new Card("7c"), new Card("7d"), new Card("8s"));
+            List<Card> private1 = Arrays.asList(new Card("6h"), new Card("6s"));
+            List<Card> private2 = Arrays.asList(new Card("9c"), new Card("9s"));
+
+
+
+            
+            long startTime = System.currentTimeMillis();
+            Comparer.CompareResult cr = TexasHoldemSolverTest.comparer.compair(private1,private2,board);
+            System.out.println(cr);
+            long endTime = System.currentTimeMillis();
+            System.out.println("That took " + (endTime - startTime) + " milliseconds");
+        } catch (Exception e) {
+            e.printStackTrace();
+            assertTrue(false);
+        }
+    }
+
+    @Test
     public void cardCompairEQTest(){
         try{
             List<Card> board = Arrays.asList(

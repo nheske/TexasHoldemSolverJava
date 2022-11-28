@@ -196,10 +196,7 @@ public class CfrPlusRiverSolver extends Solver{
         for(int i = 0;i < this.iteration_number;i++){
             for(int player_id = 0;player_id < this.player_number;player_id ++) {
                 if(this.debug){
-                    System.out.println(String.format(
-                            "---------------------------------     player %s --------------------------------",
-                            player_id
-                    ));
+                    System.out.println(String.format("---------------------------------     player %s --------------------------------", player_id));
                 }
                 this.round_deal = new int[]{-1,-1,-1,-1};
                 cfr(player_id,this.tree.getRoot(),reach_probs,i,this.initial_board_long);

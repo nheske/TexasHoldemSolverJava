@@ -9,27 +9,14 @@
     <option name="autoReloadType" value="SELECTIVE" />
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="05519cf8-6074-4a2e-b2a8-c97eb2b26732" name="Default" comment=":new: 串联Poker树生成和求解">
-      <change beforePath="$PROJECT_DIR$/.idea/encodings.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/encodings.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/.idea/misc.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/misc.xml" afterDir="false" />
+    <list default="true" id="05519cf8-6074-4a2e-b2a8-c97eb2b26732" name="Default" comment="added notes and enabled debugging">
+      <change afterPath="$PROJECT_DIR$/norms_notes.md" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/README.md" beforeDir="false" afterPath="$PROJECT_DIR$/README.md" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/README.zh-CN.md" beforeDir="false" afterPath="$PROJECT_DIR$/README.zh-CN.md" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/icybee/solver/RiverRangeManager.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/icybee/solver/RiverRangeManager.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/icybee/solver/SolverEnvironment.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/icybee/solver/SolverEnvironment.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/icybee/solver/comparer/Comparer.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/icybee/solver/comparer/Comparer.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/icybee/solver/comparer/Dic5Comparer.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/icybee/solver/comparer/Dic5Comparer.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/icybee/solver/gui/SolverGui.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/icybee/solver/gui/SolverGui.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/icybee/solver/runtime/CommandlineSolver.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/icybee/solver/runtime/CommandlineSolver.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/icybee/solver/runtime/PokerSolver.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/icybee/solver/runtime/PokerSolver.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/icybee/solver/solver/BestResponse.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/icybee/solver/solver/BestResponse.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/main/java/icybee/solver/solver/CfrPlusRiverSolver.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/icybee/solver/solver/CfrPlusRiverSolver.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/icybee/solver/solver/ParallelCfrPlusSolver.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/icybee/solver/solver/ParallelCfrPlusSolver.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/test/java/icybee/solver/ShortDeckSolverTest.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/test/java/icybee/solver/ShortDeckSolverTest.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/test/java/icybee/solver/TexasHoldemSolverTest.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/test/java/icybee/solver/TexasHoldemSolverTest.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/test/resources/outputs/outputs_log.txt" beforeDir="false" afterPath="$PROJECT_DIR$/src/test/resources/outputs/outputs_log.txt" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/test/resources/outputs/outputs_strategy.json" beforeDir="false" afterPath="$PROJECT_DIR$/src/test/resources/outputs/outputs_strategy.json" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/test/resources/python/java_interface.py" beforeDir="false" afterPath="$PROJECT_DIR$/src/test/resources/python/java_interface.py" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -78,17 +65,18 @@
     <option name="hideEmptyMiddlePackages" value="true" />
     <option name="showLibraryContents" value="true" />
   </component>
-  <component name="PropertiesComponent"><![CDATA[{
-  "keyToString": {
-    "RunOnceActivity.OpenProjectViewOnStart": "true",
-    "RunOnceActivity.ShowReadmeOnStart": "true",
-    "SHARE_PROJECT_CONFIGURATION_FILES": "true",
-    "last_opened_file_path": "C:/dev/java/TexasHoldemSolverJava",
-    "project.structure.last.edited": "Project",
-    "project.structure.proportion": "0.0",
-    "project.structure.side.proportion": "0.0"
+  <component name="PropertiesComponent">{
+  &quot;keyToString&quot;: {
+    &quot;RunOnceActivity.OpenProjectViewOnStart&quot;: &quot;true&quot;,
+    &quot;RunOnceActivity.ShowReadmeOnStart&quot;: &quot;true&quot;,
+    &quot;SHARE_PROJECT_CONFIGURATION_FILES&quot;: &quot;true&quot;,
+    &quot;last_opened_file_path&quot;: &quot;C:/dev/java/TexasHoldemSolverJava&quot;,
+    &quot;project.structure.last.edited&quot;: &quot;Project&quot;,
+    &quot;project.structure.proportion&quot;: &quot;0.0&quot;,
+    &quot;project.structure.side.proportion&quot;: &quot;0.0&quot;,
+    &quot;settings.editor.selected.configurable&quot;: &quot;preferences.customizations&quot;
   }
-}]]></component>
+}</component>
   <component name="RecentsManager">
     <key name="MoveClassesOrPackagesDialog.RECENTS_KEY">
       <recent name="icybee.riversolver.compairer" />
@@ -111,7 +99,7 @@
       <recent name="$PROJECT_DIR$/src/test/resources/python" />
     </key>
   </component>
-  <component name="RunManager" selected="Maven.TestCases">
+  <component name="RunManager" selected="JUnit.ShortDeckSolverTest.normSolverTest">
     <configuration default="true" type="Applet">
       <option name="POLICY_FILE" value="$APPLICATION_HOME_DIR$/bin/appletviewer.policy" />
       <method v="2">
@@ -321,7 +309,41 @@
         <option name="Make" enabled="true" />
       </method>
     </configuration>
-    <configuration name="TexasHoldemSolverTest.cfrTurnSolverTest" type="JUnit" factoryName="JUnit" temporary="true" nameIsGenerated="true">
+    <configuration name="ShortDeckSolverTest.cfrSolverTest" type="JUnit" factoryName="JUnit" temporary="true" nameIsGenerated="true">
+      <module name="RiverSolver" />
+      <extension name="coverage">
+        <pattern>
+          <option name="PATTERN" value="icybee.solver.*" />
+          <option name="ENABLED" value="true" />
+        </pattern>
+      </extension>
+      <option name="PACKAGE_NAME" value="icybee.solver" />
+      <option name="MAIN_CLASS_NAME" value="icybee.solver.ShortDeckSolverTest" />
+      <option name="METHOD_NAME" value="cfrSolverTest" />
+      <option name="TEST_OBJECT" value="method" />
+      <option name="WORKING_DIRECTORY" value="$MODULE_DIR$" />
+      <method v="2">
+        <option name="Make" enabled="true" />
+      </method>
+    </configuration>
+    <configuration name="ShortDeckSolverTest.normSolverTest" type="JUnit" factoryName="JUnit" temporary="true" nameIsGenerated="true">
+      <module name="RiverSolver" />
+      <extension name="coverage">
+        <pattern>
+          <option name="PATTERN" value="icybee.solver.*" />
+          <option name="ENABLED" value="true" />
+        </pattern>
+      </extension>
+      <option name="PACKAGE_NAME" value="icybee.solver" />
+      <option name="MAIN_CLASS_NAME" value="icybee.solver.ShortDeckSolverTest" />
+      <option name="METHOD_NAME" value="normSolverTest" />
+      <option name="TEST_OBJECT" value="method" />
+      <option name="WORKING_DIRECTORY" value="$MODULE_DIR$" />
+      <method v="2">
+        <option name="Make" enabled="true" />
+      </method>
+    </configuration>
+    <configuration name="TexasHoldemSolverTest.cardCompairEQTest" type="JUnit" factoryName="JUnit" temporary="true" nameIsGenerated="true">
       <module name="RiverSolver" />
       <extension name="coverage">
         <pattern>
@@ -331,7 +353,24 @@
       </extension>
       <option name="PACKAGE_NAME" value="icybee.solver" />
       <option name="MAIN_CLASS_NAME" value="icybee.solver.TexasHoldemSolverTest" />
-      <option name="METHOD_NAME" value="cfrTurnSolverTest" />
+      <option name="METHOD_NAME" value="cardCompairEQTest" />
+      <option name="TEST_OBJECT" value="method" />
+      <option name="WORKING_DIRECTORY" value="$MODULE_DIR$" />
+      <method v="2">
+        <option name="Make" enabled="true" />
+      </method>
+    </configuration>
+    <configuration name="TexasHoldemSolverTest.cardCompareBenchmarkTest" type="JUnit" factoryName="JUnit" temporary="true" nameIsGenerated="true">
+      <module name="RiverSolver" />
+      <extension name="coverage">
+        <pattern>
+          <option name="PATTERN" value="icybee.solver.*" />
+          <option name="ENABLED" value="true" />
+        </pattern>
+      </extension>
+      <option name="PACKAGE_NAME" value="icybee.solver" />
+      <option name="MAIN_CLASS_NAME" value="icybee.solver.TexasHoldemSolverTest" />
+      <option name="METHOD_NAME" value="cardCompareBenchmarkTest" />
       <option name="TEST_OBJECT" value="method" />
       <option name="WORKING_DIRECTORY" value="$MODULE_DIR$" />
       <method v="2">
@@ -511,14 +550,20 @@
       <item itemvalue="Application.SolverGui" />
       <item itemvalue="JUnit.testHoldemSolver" />
       <item itemvalue="JUnit.testShortDeckSolver" />
-      <item itemvalue="JUnit.TexasHoldemSolverTest.cfrTurnSolverTest" />
+      <item itemvalue="JUnit.ShortDeckSolverTest.cfrSolverTest" />
+      <item itemvalue="JUnit.ShortDeckSolverTest.normSolverTest" />
+      <item itemvalue="JUnit.TexasHoldemSolverTest.cardCompareBenchmarkTest" />
+      <item itemvalue="JUnit.TexasHoldemSolverTest.cardCompairEQTest" />
       <item itemvalue="Maven.TestCases" />
       <item itemvalue="Maven.riversolver [test]" />
     </list>
     <recent_temporary>
       <list>
+        <item itemvalue="JUnit.ShortDeckSolverTest.normSolverTest" />
+        <item itemvalue="JUnit.ShortDeckSolverTest.cfrSolverTest" />
+        <item itemvalue="JUnit.TexasHoldemSolverTest.cardCompareBenchmarkTest" />
         <item itemvalue="Application.SolverGui" />
-        <item itemvalue="JUnit.TexasHoldemSolverTest.cfrTurnSolverTest" />
+        <item itemvalue="JUnit.TexasHoldemSolverTest.cardCompairEQTest" />
       </list>
     </recent_temporary>
   </component>
@@ -818,7 +863,14 @@
       <option name="project" value="LOCAL" />
       <updated>1605710485748</updated>
     </task>
-    <option name="localTasksCounter" value="36" />
+    <task id="LOCAL-00036" summary="fixed spelling">
+      <created>1667445699850</created>
+      <option name="number" value="00036" />
+      <option name="presentableId" value="LOCAL-00036" />
+      <option name="project" value="LOCAL" />
+      <updated>1667445699850</updated>
+    </task>
+    <option name="localTasksCounter" value="37" />
     <servers />
   </component>
   <component name="TypeScriptGeneratedFilesManager">
@@ -844,8 +896,6 @@
     </option>
   </component>
   <component name="VcsManagerConfiguration">
-    <MESSAGE value=":sparkles: 增加CFR和discounted CFR" />
-    <MESSAGE value=":pencil: 补充文档" />
     <MESSAGE value=":construction: 正在撰写turn solver部分" />
     <MESSAGE value="&quot;:new: 初步完成turn solver主体&quot;" />
     <MESSAGE value=":new: 测试完成turn-allin情况，提交两份对应配置文件" />
@@ -869,20 +919,52 @@
     <MESSAGE value=":new: modify test case to include non-shortdeck testcase" />
     <MESSAGE value=":new: optimize comparer reading speed" />
     <MESSAGE value=":bug: fix bug in pcs cfr" />
-    <option name="LAST_COMMIT_MESSAGE" value=":bug: fix bug in pcs cfr" />
+    <MESSAGE value="fixed spelling" />
+    <MESSAGE value="added notes and enabled debugging" />
+    <option name="LAST_COMMIT_MESSAGE" value="added notes and enabled debugging" />
   </component>
   <component name="XDebuggerManager">
     <breakpoint-manager>
       <breakpoints>
         <line-breakpoint enabled="true" type="java-line">
-          <url>file://$PROJECT_DIR$/src/main/java/icybee/solver/GameTree.java</url>
-          <line>633</line>
-          <option name="timeStamp" value="3" />
+          <url>file://$PROJECT_DIR$/src/test/java/icybee/solver/TexasHoldemSolverTest.java</url>
+          <line>122</line>
+          <option name="timeStamp" value="6" />
         </line-breakpoint>
         <line-breakpoint enabled="true" type="java-line">
-          <url>file://$PROJECT_DIR$/src/main/java/icybee/solver/GameTree.java</url>
-          <line>481</line>
-          <option name="timeStamp" value="5" />
+          <url>file://$PROJECT_DIR$/src/test/java/icybee/solver/TexasHoldemSolverTest.java</url>
+          <line>138</line>
+          <option name="timeStamp" value="7" />
+        </line-breakpoint>
+        <line-breakpoint enabled="true" type="java-line">
+          <url>file://$PROJECT_DIR$/src/main/java/icybee/solver/gui/SolverGui.java</url>
+          <line>219</line>
+          <option name="timeStamp" value="10" />
+        </line-breakpoint>
+        <line-breakpoint enabled="true" type="java-line">
+          <url>file://$PROJECT_DIR$/src/main/java/icybee/solver/solver/ParallelCfrPlusSolver.java</url>
+          <line>495</line>
+          <option name="timeStamp" value="11" />
+        </line-breakpoint>
+        <line-breakpoint enabled="true" type="java-line">
+          <url>file://$PROJECT_DIR$/src/main/java/icybee/solver/gui/SolverGui.java</url>
+          <line>257</line>
+          <option name="timeStamp" value="14" />
+        </line-breakpoint>
+        <line-breakpoint enabled="true" type="java-line">
+          <url>file://$PROJECT_DIR$/src/main/java/icybee/solver/comparer/Dic5Comparer.java</url>
+          <line>30</line>
+          <option name="timeStamp" value="17" />
+        </line-breakpoint>
+        <line-breakpoint enabled="true" type="java-line">
+          <url>file://$PROJECT_DIR$/src/test/java/icybee/solver/ShortDeckSolverTest.java</url>
+          <line>393</line>
+          <option name="timeStamp" value="25" />
+        </line-breakpoint>
+        <line-breakpoint enabled="true" type="java-line">
+          <url>file://$PROJECT_DIR$/src/main/java/icybee/solver/solver/CfrPlusRiverSolver.java</url>
+          <line>428</line>
+          <option name="timeStamp" value="30" />
         </line-breakpoint>
       </breakpoints>
       <default-breakpoints>
@@ -896,6 +978,9 @@
     <watches-manager>
       <configuration name="JUnit">
         <watch expression="player1Range[0]" />
+      </configuration>
+      <configuration name="Application">
+        <watch expression="game_tree" />
       </configuration>
     </watches-manager>
   </component>

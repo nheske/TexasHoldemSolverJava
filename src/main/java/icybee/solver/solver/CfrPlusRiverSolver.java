@@ -205,12 +205,12 @@ public class CfrPlusRiverSolver extends Solver{
             if(i % this.print_interval == 0) {
                 System.out.println("-------------------");
                 endtime = System.currentTimeMillis();
-                float expliotibility = br.printExploitability(tree.getRoot(), i + 1, tree.getRoot().getPot().floatValue(), initial_board_long);
+                float exploitability = br.printExploitability(tree.getRoot(), i + 1, tree.getRoot().getPot().floatValue(), initial_board_long);
                 if(this.logfile != null){
                     long time_ms = endtime - begintime;
                     JSONObject jo = new JSONObject();
                     jo.put("iteration",i);
-                    jo.put("exploitibility",expliotibility);
+                    jo.put("exploitibility",exploitability);
                     jo.put("time_ms",time_ms);
                     fileWriter.write(String.format("%s\n",jo.toJSONString()));
                 }

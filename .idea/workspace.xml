@@ -10,13 +10,10 @@
   </component>
   <component name="ChangeListManager">
     <list default="true" id="05519cf8-6074-4a2e-b2a8-c97eb2b26732" name="Default" comment="added notes and enabled debugging">
-      <change afterPath="$PROJECT_DIR$/norms_notes.md" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/misc.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/misc.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/main/java/icybee/solver/solver/CfrPlusRiverSolver.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/icybee/solver/solver/CfrPlusRiverSolver.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/test/java/icybee/solver/ShortDeckSolverTest.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/test/java/icybee/solver/ShortDeckSolverTest.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/test/java/icybee/solver/TexasHoldemSolverTest.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/test/java/icybee/solver/TexasHoldemSolverTest.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/test/resources/outputs/outputs_log.txt" beforeDir="false" afterPath="$PROJECT_DIR$/src/test/resources/outputs/outputs_log.txt" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/test/resources/outputs/outputs_strategy.json" beforeDir="false" afterPath="$PROJECT_DIR$/src/test/resources/outputs/outputs_strategy.json" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -99,7 +96,7 @@
       <recent name="$PROJECT_DIR$/src/test/resources/python" />
     </key>
   </component>
-  <component name="RunManager" selected="JUnit.ShortDeckSolverTest.normSolverTest">
+  <component name="RunManager" selected="JUnit.ShortDeckSolverTest.cfrSolverTest">
     <configuration default="true" type="Applet">
       <option name="POLICY_FILE" value="$APPLICATION_HOME_DIR$/bin/appletviewer.policy" />
       <method v="2">
@@ -559,10 +556,10 @@
     </list>
     <recent_temporary>
       <list>
-        <item itemvalue="JUnit.ShortDeckSolverTest.normSolverTest" />
         <item itemvalue="JUnit.ShortDeckSolverTest.cfrSolverTest" />
-        <item itemvalue="JUnit.TexasHoldemSolverTest.cardCompareBenchmarkTest" />
         <item itemvalue="Application.SolverGui" />
+        <item itemvalue="JUnit.ShortDeckSolverTest.normSolverTest" />
+        <item itemvalue="JUnit.TexasHoldemSolverTest.cardCompareBenchmarkTest" />
         <item itemvalue="JUnit.TexasHoldemSolverTest.cardCompairEQTest" />
       </list>
     </recent_temporary>
@@ -870,7 +867,14 @@
       <option name="project" value="LOCAL" />
       <updated>1667445699850</updated>
     </task>
-    <option name="localTasksCounter" value="37" />
+    <task id="LOCAL-00037" summary="added notes and enabled debugging">
+      <created>1669671048462</created>
+      <option name="number" value="00037" />
+      <option name="presentableId" value="LOCAL-00037" />
+      <option name="project" value="LOCAL" />
+      <updated>1669671048462</updated>
+    </task>
+    <option name="localTasksCounter" value="38" />
     <servers />
   </component>
   <component name="TypeScriptGeneratedFilesManager">
@@ -963,8 +967,8 @@
         </line-breakpoint>
         <line-breakpoint enabled="true" type="java-line">
           <url>file://$PROJECT_DIR$/src/main/java/icybee/solver/solver/CfrPlusRiverSolver.java</url>
-          <line>428</line>
-          <option name="timeStamp" value="30" />
+          <line>453</line>
+          <option name="timeStamp" value="32" />
         </line-breakpoint>
       </breakpoints>
       <default-breakpoints>

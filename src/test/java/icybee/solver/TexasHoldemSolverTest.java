@@ -87,7 +87,7 @@ public class TexasHoldemSolverTest
                     new Card("9s")
             );
 
-            Comparer.CompareResult cr = TexasHoldemSolverTest.comparer.compair(private1,private2,board);
+            Comparer.CompareResult cr = TexasHoldemSolverTest.comparer.compare(private1,private2,board);
             System.out.println(cr);
             assertTrue(cr == Comparer.CompareResult.LARGER);
         } catch (Exception e) {
@@ -107,7 +107,7 @@ public class TexasHoldemSolverTest
 
             
             long startTime = System.currentTimeMillis();
-            Comparer.CompareResult cr = TexasHoldemSolverTest.comparer.compair(private1,private2,board);
+            Comparer.CompareResult cr = TexasHoldemSolverTest.comparer.compare(private1,private2,board);
             System.out.println(cr);
             long endTime = System.currentTimeMillis();
             System.out.println("That took " + (endTime - startTime) + " milliseconds");
@@ -136,7 +136,7 @@ public class TexasHoldemSolverTest
                     new Card("7h")
             );
 
-            Comparer.CompareResult cr = TexasHoldemSolverTest.comparer.compair(private1,private2,board);
+            Comparer.CompareResult cr = TexasHoldemSolverTest.comparer.compare(private1,private2,board);
             System.out.println(cr);
             assertTrue(cr == Comparer.CompareResult.EQUAL);
         } catch (Exception e) {
@@ -164,7 +164,7 @@ public class TexasHoldemSolverTest
                     new Card("7h")
             );
 
-            Comparer.CompareResult cr = TexasHoldemSolverTest.comparer.compair(private1,private2,board);
+            Comparer.CompareResult cr = TexasHoldemSolverTest.comparer.compare(private1,private2,board);
             System.out.println(cr);
             assertTrue(cr == Comparer.CompareResult.SMALLER);
         } catch (Exception e) {

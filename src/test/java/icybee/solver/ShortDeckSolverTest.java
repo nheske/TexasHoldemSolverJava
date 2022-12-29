@@ -88,7 +88,7 @@ public class ShortDeckSolverTest
                     new Card("9s")
             );
 
-            Comparer.CompareResult cr = ShortDeckSolverTest.comparer.compair(private1,private2,board);
+            Comparer.CompareResult cr = ShortDeckSolverTest.comparer.compare(private1,private2,board);
             System.out.println(cr);
             assertTrue(cr == Comparer.CompareResult.LARGER);
         } catch (Exception e) {
@@ -116,7 +116,7 @@ public class ShortDeckSolverTest
                     new Card("7h")
             );
 
-            Comparer.CompareResult cr = ShortDeckSolverTest.comparer.compair(private1,private2,board);
+            Comparer.CompareResult cr = ShortDeckSolverTest.comparer.compare(private1,private2,board);
             System.out.println(cr);
             assertTrue(cr == Comparer.CompareResult.EQUAL);
         } catch (Exception e) {
@@ -144,7 +144,7 @@ public class ShortDeckSolverTest
                     new Card("7h")
             );
 
-            Comparer.CompareResult cr = ShortDeckSolverTest.comparer.compair(private1,private2,board);
+            Comparer.CompareResult cr = ShortDeckSolverTest.comparer.compare(private1,private2,board);
             System.out.println(cr);
             assertTrue(cr == Comparer.CompareResult.SMALLER);
         } catch (Exception e) {

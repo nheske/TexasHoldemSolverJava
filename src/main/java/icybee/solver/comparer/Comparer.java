@@ -17,8 +17,8 @@ public abstract class Comparer {
         this.dic_dir = dic_dir;
         this.lines = lines;
     }
-    abstract public CompareResult compair(List<Card> private_former, List<Card> private_latter, List<Card> public_board) throws Exception;
-    abstract public CompareResult compair(int[] private_former, int[] private_latter, int[] public_board) throws Exception;
+    abstract public CompareResult compare(List<Card> private_former, List<Card> private_latter, List<Card> public_board) throws Exception;
+    abstract public CompareResult compare(int[] private_former, int[] private_latter, int[] public_board) throws Exception;
     abstract public int get_rank(List<Card> private_hand,List<Card> public_board);
     abstract public int get_rank(int[] private_hand,int[] public_board);
     abstract public int get_rank(long private_hand,long public_board);

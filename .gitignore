@@ -2,6 +2,7 @@
 *.class
 */classes/*
 */test-classes/*
+target/
 
 # Log file
 *.log

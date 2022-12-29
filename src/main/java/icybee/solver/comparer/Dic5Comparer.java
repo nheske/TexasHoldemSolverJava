@@ -137,7 +137,7 @@ public class Dic5Comparer extends Comparer {
 
     @Override
     @SuppressWarnings("all")
-    public CompareResult compair(List<Card> private_former, List<Card> private_latter, List<Card> public_board) throws CardsNotFoundException {
+    public CompareResult compare(List<Card> private_former, List<Card> private_latter, List<Card> public_board) throws CardsNotFoundException {
         assert(private_former.size() == 2);
         assert(private_latter.size() == 2);
         assert(public_board.size() == 5);
@@ -151,7 +151,7 @@ public class Dic5Comparer extends Comparer {
 
     }
     @Override
-    public CompareResult compair(int[] private_former, int[] private_latter, int[] public_board) throws CardsNotFoundException, BoardNotFoundException{
+    public CompareResult compare(int[] private_former, int[] private_latter, int[] public_board) throws CardsNotFoundException, BoardNotFoundException{
         assert(private_former.length == 2);
         assert(private_latter.length == 2);
         assert(public_board.length == 5);

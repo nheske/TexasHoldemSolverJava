@@ -17,7 +17,7 @@ public class Card {
     }
 
     String card;
-    Card(String card){
+    public Card(String card){
         this.card = card;
     }
 

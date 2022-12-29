@@ -83,7 +83,7 @@ pip3 install networkx
 pip3 install matplotlib
 ```
 
-Althrough written in java. TexasHoldemSolverJava is by default called through python.
+Although written in java. TexasHoldemSolverJava is by default called through python.
 
 Sample code involves python calls can be found in ```java_interface.py```. Here we briefly introduce the procedure of calling the solver and some basic parameters.
 

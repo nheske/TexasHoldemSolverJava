@@ -145,6 +145,7 @@ public class NormSolverTest {
         Config config = this.loadConfig(config_name);
         GameTree game_tree = SolverEnvironment.gameTreeFromConfig(config, NormSolverTest.deck);
         System.out.println("printTreeLimitDepthTest The depth limit game tree :");
+        LOG.info("printTreeLimitDepthTest The depth limit game tree :");
         try {
             game_tree.printTree(2);
         } catch (Exception e) {
@@ -162,14 +163,12 @@ public class NormSolverTest {
 
             Card card_rev = new Card(Card.intCard2Str(card_int));
             int card_int_rev = Card.card2int(card_rev);
-            System.out.println(card_int);
-            System.out.println(card_int_rev);
+            LOG.info("cardConvertTest int {} to string {} to int {}",card_int, card_rev, card_int_rev);
             assert (card_int == card_int_rev);
         } catch (Exception e) {
             e.printStackTrace();
             assertTrue(false);
         }
-        System.out.println("end of cardConvertTest");
     }
 
     @Test
@@ -179,15 +178,7 @@ public class NormSolverTest {
             long board_int = Card.boardCards2long(board);
             Card[] board_cards = Card.long2boardCards(board_int);
             long board_int_rev = Card.boardCards2long(board_cards);
-
-            for (Card i : board)
-                System.out.println(i.getCard());
-            System.out.println();
-            for (Card i : board_cards)
-                System.out.println(i.getCard());
-
-            System.out.println(board_int);
-            System.out.println(board_int_rev);
+            LOG.info("cardsIntegerConvertTest board{} to int {} to string {} to int {}", board, board_int, board_cards, board_int_rev);
             assert (board_int == board_int_rev);
         } catch (Exception e) {
             e.printStackTrace();
@@ -211,7 +202,7 @@ public class NormSolverTest {
 
     @Test
     public void compareEqualTest() {
-        System.out.println("compareEqualTest");
+        LOG.info("compareEqualTest");
         List<Card> board1_public = Arrays.asList(new Card("6c"), new Card("6d"), new Card("7c"), new Card("7d"), new Card("8s"));
         List<Card> board1_private = Arrays.asList(new Card("6h"), new Card("7s"));
         int[] board2_public = {(new Card("6c").getCardInt()), (new Card("6d").getCardInt()), (new Card("7c").getCardInt()), (new Card("7d").getCardInt()), (new Card("8s").getCardInt()),};
@@ -219,15 +210,13 @@ public class NormSolverTest {
         try {
             long board_int1 = comparer.get_rank(board1_private, board1_public);
             long board_int2 = comparer.get_rank(board2_private, board2_public);
-            System.out.println(board_int1);
-            System.out.println(board_int2);
+            LOG.info("board1 {} = board2 {}",board_int1,board_int2);
             assertTrue(board_int1 == board_int2);
-
         } catch (Exception e) {
             e.printStackTrace();
             assertTrue(false);
         }
-        System.out.println("end compareEqualTest");
+        LOG.info("end compareEqualTest");
     }
 
     @Test
@@ -284,8 +273,7 @@ public class NormSolverTest {
         writer.write(strategy_json);
         writer.flush();
         writer.close();
-
-        System.out.println("end normSolverTest");
+        LOG.info("end normSolverTest");
     }
 
     @Test
@@ -346,6 +334,7 @@ public class NormSolverTest {
         writer.close();
         System.out.println("end solverTest");
          */
+        LOG.info("end cfrSolverTest");
     }
 
     @Test
@@ -390,7 +379,7 @@ public class NormSolverTest {
         writer.write(strategy_json);
         writer.flush();
         writer.close();
-        System.out.println("end solverTest");
+        LOG.info("end cfrTurnSolverTest");
     }
 
     @Test
@@ -438,6 +427,7 @@ public class NormSolverTest {
         //writer.flush();
         //writer.close();
         //System.out.println("end solverTest");
+        LOG.info("end parrallelCfrFlopSolverTest");
     }
 
     @Test
@@ -481,7 +471,7 @@ public class NormSolverTest {
         //writer.write(strategy_json);
         //writer.flush();
         //writer.close();
-        System.out.println("end solverTest");
+        LOG.info("end cfrFlopSolverTest");
     }
 
     @Test
@@ -526,7 +516,7 @@ public class NormSolverTest {
         //writer.write(strategy_json);
         //writer.flush();
         //writer.close();
-        System.out.println("end solverTest");
+        LOG.info("end cfrFlopSolverPcsTest");
     }
 
     @Test
@@ -566,7 +556,7 @@ public class NormSolverTest {
         //writer.write(strategy_json);
         //writer.flush();
         //writer.close();
-        //System.out.println("end solverTest");
+        LOG.info("end parrallelPcsCfrFlopSolverTest");
     }
 
     @Test
@@ -607,6 +597,6 @@ public class NormSolverTest {
         writer.write(strategy_json);
         writer.flush();
         writer.close();
-        System.out.println("end solverTest");
+        LOG.info("end parrallelCfrTurnSolverTest");
     }
 }

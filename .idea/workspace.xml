@@ -9,20 +9,12 @@
     <option name="autoReloadType" value="SELECTIVE" />
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="05519cf8-6074-4a2e-b2a8-c97eb2b26732" name="Default" comment="added notes and enabled debugging">
-      <change afterPath="$PROJECT_DIR$/src/main/resources/log4j2.properties" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/test/java/com/heske/NormSolverTest.java" afterDir="false" />
+    <list default="true" id="05519cf8-6074-4a2e-b2a8-c97eb2b26732" name="Default" comment="adding tests">
       <change beforePath="$PROJECT_DIR$/.gitignore" beforeDir="false" afterPath="$PROJECT_DIR$/.gitignore" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/RiverSolver.iml" beforeDir="false" afterPath="$PROJECT_DIR$/RiverSolver.iml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/pom.xml" beforeDir="false" afterPath="$PROJECT_DIR$/pom.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/icybee/solver/Card.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/icybee/solver/Card.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/icybee/solver/comparer/Comparer.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/icybee/solver/comparer/Comparer.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/icybee/solver/comparer/Dic5Comparer.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/icybee/solver/comparer/Dic5Comparer.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/test/java/icybee/solver/ShortDeckSolverTest.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/test/java/icybee/solver/ShortDeckSolverTest.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/test/java/icybee/solver/TexasHoldemSolverTest.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/test/java/icybee/solver/TexasHoldemSolverTest.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/README.md" beforeDir="false" afterPath="$PROJECT_DIR$/README.md" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/test/java/com/heske/NormSolverTest.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/test/java/com/heske/NormSolverTest.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/test/resources/outputs/outputs_log.txt" beforeDir="false" afterPath="$PROJECT_DIR$/src/test/resources/outputs/outputs_log.txt" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/test/resources/outputs/outputs_strategy.json" beforeDir="false" afterPath="$PROJECT_DIR$/src/test/resources/outputs/outputs_strategy.json" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -107,7 +99,7 @@
       <recent name="icybee.riversolver.trainable" />
     </key>
   </component>
-  <component name="RunManager" selected="JUnit.NormSolverTest.printTreeTest">
+  <component name="RunManager" selected="JUnit.NormSolverTest">
     <configuration default="true" type="Applet">
       <option name="POLICY_FILE" value="$APPLICATION_HOME_DIR$/bin/appletviewer.policy" />
       <method v="2">
@@ -313,14 +305,13 @@
       </extension>
       <option name="PACKAGE_NAME" value="com.heske" />
       <option name="MAIN_CLASS_NAME" value="com.heske.NormSolverTest" />
-      <option name="METHOD_NAME" value="" />
       <option name="TEST_OBJECT" value="class" />
       <option name="WORKING_DIRECTORY" value="$MODULE_DIR$" />
       <method v="2">
         <option name="Make" enabled="true" />
       </method>
     </configuration>
-    <configuration name="NormSolverTest.cardCompareHigherTest" type="JUnit" factoryName="JUnit" temporary="true" nameIsGenerated="true">
+    <configuration name="NormSolverTest.cardConvertTest" type="JUnit" factoryName="JUnit" temporary="true" nameIsGenerated="true">
       <module name="RiverSolver" />
       <extension name="coverage">
         <pattern>
@@ -330,14 +321,14 @@
       </extension>
       <option name="PACKAGE_NAME" value="com.heske" />
       <option name="MAIN_CLASS_NAME" value="com.heske.NormSolverTest" />
-      <option name="METHOD_NAME" value="cardCompareHigherTest" />
+      <option name="METHOD_NAME" value="cardConvertTest" />
       <option name="TEST_OBJECT" value="method" />
       <option name="WORKING_DIRECTORY" value="$MODULE_DIR$" />
       <method v="2">
         <option name="Make" enabled="true" />
       </method>
     </configuration>
-    <configuration name="NormSolverTest.getRankTest" type="JUnit" factoryName="JUnit" temporary="true" nameIsGenerated="true">
+    <configuration name="NormSolverTest.cardsIntegerConvertNETest" type="JUnit" factoryName="JUnit" temporary="true" nameIsGenerated="true">
       <module name="RiverSolver" />
       <extension name="coverage">
         <pattern>
@@ -347,14 +338,14 @@
       </extension>
       <option name="PACKAGE_NAME" value="com.heske" />
       <option name="MAIN_CLASS_NAME" value="com.heske.NormSolverTest" />
-      <option name="METHOD_NAME" value="getRankTest" />
+      <option name="METHOD_NAME" value="cardsIntegerConvertNETest" />
       <option name="TEST_OBJECT" value="method" />
       <option name="WORKING_DIRECTORY" value="$MODULE_DIR$" />
       <method v="2">
         <option name="Make" enabled="true" />
       </method>
     </configuration>
-    <configuration name="NormSolverTest.printTreeTest" type="JUnit" factoryName="JUnit" temporary="true" nameIsGenerated="true">
+    <configuration name="NormSolverTest.cardsIntegerConvertTest" type="JUnit" factoryName="JUnit" temporary="true" nameIsGenerated="true">
       <module name="RiverSolver" />
       <extension name="coverage">
         <pattern>
@@ -364,24 +355,24 @@
       </extension>
       <option name="PACKAGE_NAME" value="com.heske" />
       <option name="MAIN_CLASS_NAME" value="com.heske.NormSolverTest" />
-      <option name="METHOD_NAME" value="printTreeTest" />
+      <option name="METHOD_NAME" value="cardsIntegerConvertTest" />
       <option name="TEST_OBJECT" value="method" />
       <option name="WORKING_DIRECTORY" value="$MODULE_DIR$" />
       <method v="2">
         <option name="Make" enabled="true" />
       </method>
     </configuration>
-    <configuration name="ShortDeckSolverTest.cardCompairLGTest" type="JUnit" factoryName="JUnit" temporary="true" nameIsGenerated="true">
+    <configuration name="NormSolverTest.compareEqualTest" type="JUnit" factoryName="JUnit" temporary="true" nameIsGenerated="true">
       <module name="RiverSolver" />
       <extension name="coverage">
         <pattern>
-          <option name="PATTERN" value="icybee.solver.*" />
+          <option name="PATTERN" value="com.heske.*" />
           <option name="ENABLED" value="true" />
         </pattern>
       </extension>
-      <option name="PACKAGE_NAME" value="icybee.solver" />
-      <option name="MAIN_CLASS_NAME" value="icybee.solver.ShortDeckSolverTest" />
-      <option name="METHOD_NAME" value="cardCompairLGTest" />
+      <option name="PACKAGE_NAME" value="com.heske" />
+      <option name="MAIN_CLASS_NAME" value="com.heske.NormSolverTest" />
+      <option name="METHOD_NAME" value="compareEqualTest" />
       <option name="TEST_OBJECT" value="method" />
       <option name="WORKING_DIRECTORY" value="$MODULE_DIR$" />
       <method v="2">
@@ -601,22 +592,22 @@
       <item itemvalue="Application.CommandlineSolver" />
       <item itemvalue="JUnit.testHoldemSolver" />
       <item itemvalue="JUnit.testShortDeckSolver" />
-      <item itemvalue="JUnit.NormSolverTest.getRankTest" />
-      <item itemvalue="JUnit.NormSolverTest.printTreeTest" />
+      <item itemvalue="JUnit.NormSolverTest.cardConvertTest" />
+      <item itemvalue="JUnit.NormSolverTest.cardsIntegerConvertNETest" />
+      <item itemvalue="JUnit.NormSolverTest.cardsIntegerConvertTest" />
+      <item itemvalue="JUnit.NormSolverTest.compareEqualTest" />
       <item itemvalue="JUnit.NormSolverTest" />
-      <item itemvalue="JUnit.NormSolverTest.cardCompareHigherTest" />
-      <item itemvalue="JUnit.ShortDeckSolverTest.cardCompairLGTest" />
       <item itemvalue="Maven.RiverSolver install skipTests" />
       <item itemvalue="Maven.TestCases" />
       <item itemvalue="Maven.riversolver [test]" />
     </list>
     <recent_temporary>
       <list>
-        <item itemvalue="JUnit.NormSolverTest.printTreeTest" />
-        <item itemvalue="JUnit.NormSolverTest.getRankTest" />
-        <item itemvalue="JUnit.NormSolverTest.cardCompareHigherTest" />
         <item itemvalue="JUnit.NormSolverTest" />
-        <item itemvalue="JUnit.ShortDeckSolverTest.cardCompairLGTest" />
+        <item itemvalue="JUnit.NormSolverTest.compareEqualTest" />
+        <item itemvalue="JUnit.NormSolverTest.cardsIntegerConvertNETest" />
+        <item itemvalue="JUnit.NormSolverTest.cardsIntegerConvertTest" />
+        <item itemvalue="JUnit.NormSolverTest.cardConvertTest" />
       </list>
     </recent_temporary>
   </component>
@@ -937,7 +928,14 @@
       <option name="project" value="LOCAL" />
       <updated>1672157712817</updated>
     </task>
-    <option name="localTasksCounter" value="39" />
+    <task id="LOCAL-00039" summary="adding tests">
+      <created>1672278271233</created>
+      <option name="number" value="00039" />
+      <option name="presentableId" value="LOCAL-00039" />
+      <option name="project" value="LOCAL" />
+      <updated>1672278271233</updated>
+    </task>
+    <option name="localTasksCounter" value="40" />
     <servers />
   </component>
   <component name="TypeScriptGeneratedFilesManager">
@@ -963,7 +961,6 @@
     </option>
   </component>
   <component name="VcsManagerConfiguration">
-    <MESSAGE value=":construction: 正在撰写turn solver部分" />
     <MESSAGE value="&quot;:new: 初步完成turn solver主体&quot;" />
     <MESSAGE value=":new: 测试完成turn-allin情况，提交两份对应配置文件" />
     <MESSAGE value=":new: 测试完成flop的一种简单情况" />
@@ -988,7 +985,8 @@
     <MESSAGE value=":bug: fix bug in pcs cfr" />
     <MESSAGE value="fixed spelling" />
     <MESSAGE value="added notes and enabled debugging" />
-    <option name="LAST_COMMIT_MESSAGE" value="added notes and enabled debugging" />
+    <MESSAGE value="adding tests" />
+    <option name="LAST_COMMIT_MESSAGE" value="adding tests" />
   </component>
   <component name="XDebuggerManager">
     <breakpoint-manager>

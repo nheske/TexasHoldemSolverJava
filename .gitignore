@@ -3,6 +3,8 @@
 */classes/*
 */test-classes/*
 target/
+outputs/
+outputs_log.txt
 
 # Log file
 *.log

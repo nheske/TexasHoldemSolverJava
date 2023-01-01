@@ -156,7 +156,7 @@ public class NormSolverTest {
 
     @Test
     public void cardConvertTest() {
-        System.out.println("cardConvertTest");
+        LOG.info("cardConvertTest");
         try {
             Card card = new Card("6c");
             int card_int = Card.card2int(card);
@@ -520,7 +520,7 @@ public class NormSolverTest {
     }
 
     @Test
-    public void parrallelPcsCfrFlopSolverTest() throws BoardNotFoundException, Exception {
+    public void parallelPcsCfrFlopSolverTest() throws BoardNotFoundException, Exception {
         System.out.println("solverTest");
         //String config_name = "yamls/rule_shortdeck_simple.yaml";
         //String config_name = "yamls/rule_shortdeck_turnriversolver.yaml";
@@ -556,11 +556,11 @@ public class NormSolverTest {
         //writer.write(strategy_json);
         //writer.flush();
         //writer.close();
-        LOG.info("end parrallelPcsCfrFlopSolverTest");
+        LOG.info("end parallelPcsCfrFlopSolverTest");
     }
 
     @Test
-    public void parrallelCfrTurnSolverTest() throws BoardNotFoundException, Exception {
+    public void parallelCfrTurnSolverTest() throws BoardNotFoundException, Exception {
         System.out.println("solverTest");
         //String config_name = "yamls/rule_shortdeck_simple.yaml";
         //String config_name = "yamls/rule_shortdeck_turnriversolver.yaml";
@@ -597,6 +597,6 @@ public class NormSolverTest {
         writer.write(strategy_json);
         writer.flush();
         writer.close();
-        LOG.info("end parrallelCfrTurnSolverTest");
+        LOG.info("end parallelCfrTurnSolverTest");
     }
 }

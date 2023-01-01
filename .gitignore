@@ -3,6 +3,7 @@
 */classes/*
 */test-classes/*
 target/
+.idea/
 outputs/
 outputs_log.txt
 

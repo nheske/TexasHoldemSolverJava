@@ -12,14 +12,21 @@ import me.tongfei.progressbar.ProgressBar;
 import org.apache.commons.lang3.ArrayUtils;
 import org.paukov.combinatorics3.Generator;
 import org.paukov.combinatorics3.IGenerator;
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
 
 /**
  * Created by huangxuefeng on 2019/10/6.
  * This file contains code for a card compairer
  */
 public class Dic5Comparer extends Comparer {
+    private static final Logger LOG = LoggerFactory.getLogger(Dic5Comparer.class);
     //Map<Set<String>,Integer> cards2rank = (Map<Set<String>,Integer>)new HashMap<Set<String>,Integer>();
-    Map<Long,Integer> cardslong2rank = (Map<Long,Integer>)new HashMap<Long,Integer>();
+    static Map<Long,Integer> cardslong2rank = (Map<Long,Integer>)new HashMap<Long,Integer>();
+
+    public static Map<Long, Integer> getCardslong2rank() {
+        return cardslong2rank;
+    }
 
     public Dic5Comparer(String dic_dir, int lines) throws IOException {
         super(dic_dir,lines);
@@ -32,13 +39,11 @@ public class Dic5Comparer extends Comparer {
     }
 
     public void load_compairer(String dic_dir,int lines,boolean verbose) throws IOException{
-
-        //cards2rank = (Map<Set<String>,Integer>)new Hashtable<Set<String>,Integer>(lines * 50);
         cardslong2rank = (Map<Long,Integer>)new Hashtable<Long,Integer>(lines * 50);
 
         BufferedReader bufferedReader = new BufferedReader(new FileReader(dic_dir));
         String str;
-        ProgressBar pb = new ProgressBar("Dic5Comapirer Load",lines);
+        ProgressBar pb = new ProgressBar("Dic5Comparer Load",lines);
         if (verbose) pb.start();
         int ind = 0;
         while ((str = bufferedReader.readLine()) != null) {
@@ -51,23 +56,36 @@ public class Dic5Comparer extends Comparer {
 
             int rank = Integer.valueOf(linesp[1]);
             //cards2rank.put(cards_set,rank);
-            if(cardslong2rank.containsKey(Card.boardCards2long(cards))){
+            long longRepresentationOfCards = Card.boardCards2long(cards);
+            if(cardslong2rank.containsKey(longRepresentationOfCards)){
                 String err_info = "";
                 for(String one_card:cards) err_info += (" " + one_card);
                 throw new RuntimeException(
                         String.format(
                                 "cards long already exist: %s ,existed long: %d",
-                                err_info,cardslong2rank.get(Card.boardCards2long(cards))
+                                err_info,cardslong2rank.get(longRepresentationOfCards)
                         )
                 );
             }
-            cardslong2rank.put(Card.boardCards2long(cards),rank);
+            cardslong2rank.put(longRepresentationOfCards,rank);
             ind += 1;
             if(ind % 100 == 0) {
                 if (verbose) pb.stepBy(100);
             }
         }
         pb.stop();
+    }
+
+    public String padLeftZeros(String inputString, int length) {
+        if (inputString.length() >= length) {
+            return inputString;
+        }
+        StringBuilder sb = new StringBuilder();
+        while (sb.length() < length - inputString.length()) {
+            sb.append('0');
+        }
+        sb.append(inputString);
+        return sb.toString();
     }
 
     @SuppressWarnings("all")

@@ -43,17 +43,19 @@ public class BasicTest {
 
     @Before
     public void loadEnvironmentsTest() {
-        String config_name = "yamls/rule_holdem_simple.yaml";
+//        String config_name = "yamls/rule_holdem_simple.yaml"; //52 card deck and 2,598,960 5-card combos
 //        String config_name = "yamls/rule_shortdeck_simple.yaml";
         //String config_name = "yamls/rule_shortdeck_turnriversolver.yaml";
         //String config_name = "yamls/rule_shortdeck_turnsolver.yaml";
         //String config_name = "yamls/rule_shortdeck_turnsolver_withallin.yaml";
-        //String config_name = "yamls/rule_shortdeck_flopsolver.yaml";
-        Config config = this.loadConfig(config_name);
+        String config_name = "yamls/rule_shortdeck_flopsolver.yaml";
+        Config config = this.loadConfig(config_name); //36 card deck and 376,992 (36 choose 5) 5-card combos
         if (BasicTest.comparer == null) {
             try {
                 BasicTest.comparer = SolverEnvironment.compairerFromConfig(config);
                 BasicTest.deck = SolverEnvironment.deckFromConfig(config);
+                LOG.info("deck size "+BasicTest.deck.getCards().size());
+//                LOG.info("hi");
             } catch (Exception e) {
                 e.printStackTrace();
                 assertTrue(false);
@@ -84,20 +86,28 @@ public class BasicTest {
     }
 
     public Long getRandomEncodedHand() {
-        String raw = "1111100000000000000000000000000000000000000000000000"; // 5 1's in 52 bits
-        raw = "0100000000000000000000000000000000000000000000001111"; // 5 1's in 52 bits
-        long longRepresentationOfCards = Long.parseLong(raw, 2);
-        char[] characters = raw.toCharArray();
-        for (int i = 0; i < characters.length; i++) {
-            int randomIndex = (int)(Math.random() * characters.length);
+        String ones = "11111";
+        String zeros = "0000000000000000000000000000000000000000000000000000";
+        //if short deck, can only be 6's or above which means many positions have to remain 0
+        //short deck unused positions are where the 2-5's are or the last 16 positions
+        int deckSize = BasicTest.deck.getCards().size();
+        String unrandomizedCards = ones + zeros.substring(0, 52-5);
+//        String unrandomizedCards = ones + zeros.substring(0, deckSize-5);
+        long longRepresentationOfCards = Long.parseLong(unrandomizedCards, 2);
+        char[] characters = unrandomizedCards.toCharArray();
+        for (int i = 0; i < deckSize; i++) {
+            int randomIndex = (int)(Math.random() * deckSize);
             char temp = characters[i];
             characters[i] = characters[randomIndex];
             characters[randomIndex] = temp;
         }
         String bitString = new String(characters);
         long number = Long.parseLong(bitString, 2);
-        return number;//note while there are only 2,598,960 different values with 5 1's, using this encoding strategy the range of values extends greater than 2,598,960, e.g. 11111 followed by 47 zeroes is 4362862139015168.
+        return number;
     }
+//For a 52 card deck (i.e. not short deck)
+    // for a short deck 6-A there are 16 cards removed so should work with 26 cards and 26 bits for representation
+// note while there are only 2,598,960 different values with 5 1's, using this encoding strategy the range of values extends greater than 2,598,960, e.g. 11111 followed by 47 zeroes is 4362862139015168.
 //    Take a random number n between zero and threshold which will be the number of ones in the string (both ends inclusive)
 //    Create an ArrayList list and add n ones to it.
 //    Then add 9 minus n zeros to the same list
@@ -107,20 +117,25 @@ public class BasicTest {
     @Test
     public void comparerTest() {
         Map<Long, Integer> mapCardsToHandValue = Dic5Comparer.getCardslong2rank();
-        Long longRepresentationOfCards = getRandomEncodedHand();
-        //longs are every value from 1 to 2,598,960
-//        long leftLimit = 0L;
-//        long rightLimit = 2598960L;
-//        long longRepresentationOfCards = leftLimit + (long) (Math.random() * (rightLimit - leftLimit));
-        int handValue = mapCardsToHandValue.get(longRepresentationOfCards);
-        Card[] cards;
-        try {
-            cards = Card.long2boardCards(longRepresentationOfCards);
-        } catch (BoardNotFoundException e) {
-            throw new RuntimeException(e);
+        //quick test to see whether they are using 52 bits of 36 bits
+        for (int i=0; i<20; i++){
+            Random       random    = new Random();
+            List<Long> keys      = new ArrayList<Long>(mapCardsToHandValue.keySet());
+            Long       randomHandLong = keys.get( random.nextInt(keys.size()) );
+            String randomBinaryString = Long.toBinaryString(randomHandLong);
+            Card[] cards;
+            try {
+                cards = Card.long2boardCards(randomHandLong);
+            } catch (BoardNotFoundException e) {
+                throw new RuntimeException(e);
+            }
+            LOG.info("cards {} {}", cards, randomBinaryString);
         }
+
+
+        Long longRepresentationOfCards = getRandomEncodedHand();
         String binaryString = Long.toBinaryString(longRepresentationOfCards);
-        binaryString = padLeftZeros(binaryString, 52);
+        binaryString = padLeftZeros(binaryString, BasicTest.deck.getCards().size());
         // there are 52 choose 5, or 2, 598 960 possible combinations of 5-card poker hands (52 x 51 x 50 x 49 x 48).
 //0000000000000000000000000000000000000000000011110001,154 for 2c-3c-3d-3h-3s
 //0000000000000000000000000000000000010001000100010001,9 for 2c-3c-4c-5c-6c
@@ -130,7 +145,15 @@ public class BasicTest {
 //0000101000000100000100000000000000000000000000000100,3653 for [2h, Tc, Jh, Kd, Ks]
 //1111100000000000000000000000000000000000000000000000,11 for [Ks, Ac, Ad, Ah, As]
 //0001000000100000000000000000010010000000100000000000,6451 for [4s, 6s, 7h, Qd, Ac]
-//shdc
+//shdc e.g. those first 4 bits are As, Ah, Ad, Ac, then Ks, Kh, Kd, Kc, .......2s, 2h, 2
+        Card[] cards;
+        try {
+            cards = Card.long2boardCards(longRepresentationOfCards);
+        } catch (BoardNotFoundException e) {
+            throw new RuntimeException(e);
+        }
+        LOG.info("cards {} {}", cards, binaryString);
+        int handValue = mapCardsToHandValue.get(longRepresentationOfCards);
         LOG.info("cards {} {},{} for {}", cards, binaryString, handValue);
 //            1948254208 1985 (first)
 //            15032385539 3011 (last)

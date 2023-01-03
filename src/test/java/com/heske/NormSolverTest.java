@@ -1,7 +1,7 @@
 package com.heske;
 
 import icybee.solver.*;
-import icybee.solver.comparer.Comparer;
+import icybee.solver.compairer.Compairer;
 import icybee.solver.exceptions.BoardNotFoundException;
 import icybee.solver.ranges.PrivateCards;
 import icybee.solver.solver.CfrPlusRiverSolver;
@@ -25,9 +25,8 @@ import java.util.Map;
 import static org.junit.Assert.assertTrue;
 
 public class NormSolverTest {
-    private static Logger logger = LoggerFactory.getLogger(NormSolverTest.class);
     private static final Logger LOG = LoggerFactory.getLogger(NormSolverTest.class);
-    static Comparer comparer = null;
+    static Compairer compairer = null;
     static Deck deck = null;
     Config loadConfig(String conf_name) {
         ClassLoader classLoader = getClass().getClassLoader();
@@ -50,9 +49,9 @@ public class NormSolverTest {
         //String config_name = "yamls/rule_shortdeck_turnsolver_withallin.yaml";
         //String config_name = "yamls/rule_shortdeck_flopsolver.yaml";
         Config config = this.loadConfig(config_name);
-        if (NormSolverTest.comparer == null) {
+        if (NormSolverTest.compairer == null) {
             try {
-                NormSolverTest.comparer = SolverEnvironment.compairerFromConfig(config);
+                NormSolverTest.compairer = SolverEnvironment.compairerFromConfig(config);
                 NormSolverTest.deck = SolverEnvironment.deckFromConfig(config);
             } catch (Exception e) {
                 e.printStackTrace();
@@ -68,9 +67,9 @@ public class NormSolverTest {
             List<Card> board = Arrays.asList(new Card("6c"), new Card("6d"), new Card("7c"), new Card("7d"), new Card("8s"));
             List<Card> private1 = Arrays.asList(new Card("6h"), new Card("6s"));
             List<Card> private2 = Arrays.asList(new Card("9c"), new Card("9s"));
-            Comparer.CompareResult cr = NormSolverTest.comparer.compare(private1, private2, board);
+            Compairer.CompairResult cr = NormSolverTest.compairer.compair(private1, private2, board);
             LOG.info("cardCompareHigherTest result {}", cr);
-            assertTrue(cr == Comparer.CompareResult.LARGER);
+            assertTrue(cr == Compairer.CompairResult.LARGER);
         } catch (Exception e) {
             e.printStackTrace();
             assertTrue(false);
@@ -83,9 +82,9 @@ public class NormSolverTest {
             List<Card> board = Arrays.asList(new Card("6c"), new Card("6d"), new Card("7c"), new Card("7d"), new Card("8s"));
             List<Card> private1 = Arrays.asList(new Card("8h"), new Card("7s"));
             List<Card> private2 = Arrays.asList(new Card("8d"), new Card("7h"));
-            Comparer.CompareResult cr = NormSolverTest.comparer.compare(private1, private2, board);
+            Compairer.CompairResult cr = NormSolverTest.compairer.compair(private1, private2, board);
             LOG.info("cardCompareEqualTest result {}", cr);
-            assertTrue(cr == Comparer.CompareResult.EQUAL);
+            assertTrue(cr == Compairer.CompairResult.EQUAL);
         } catch (Exception e) {
             e.printStackTrace();
             assertTrue(false);
@@ -99,9 +98,9 @@ public class NormSolverTest {
             List<Card> private1 = Arrays.asList(new Card("6h"), new Card("7s"));
             List<Card> private2 = Arrays.asList(new Card("8h"), new Card("7h"));
 
-            Comparer.CompareResult cr = NormSolverTest.comparer.compare(private1, private2, board);
+            Compairer.CompairResult cr = NormSolverTest.compairer.compair(private1, private2, board);
             LOG.info("cardCompareLowerTest result {}", cr);
-            assertTrue(cr == Comparer.CompareResult.SMALLER);
+            assertTrue(cr == Compairer.CompairResult.SMALLER);
         } catch (Exception e) {
             e.printStackTrace();
             assertTrue(false);
@@ -112,7 +111,7 @@ public class NormSolverTest {
     public void getRankTest() {
         List<Card> board = Arrays.asList(new Card("8d"), new Card("9d"), new Card("9s"), new Card("Jd"), new Card("Jh"));
         List<Card> private_cards = Arrays.asList(new Card("6h"), new Card("7s"));
-        int rank = NormSolverTest.comparer.get_rank(private_cards, board);
+        int rank = NormSolverTest.compairer.get_rank(private_cards, board);
         LOG.info("getRankTest result {}", rank);
         assertTrue(rank == 687);
     }
@@ -208,8 +207,8 @@ public class NormSolverTest {
         int[] board2_public = {(new Card("6c").getCardInt()), (new Card("6d").getCardInt()), (new Card("7c").getCardInt()), (new Card("7d").getCardInt()), (new Card("8s").getCardInt()),};
         int[] board2_private = {(new Card("6h").getCardInt()), (new Card("7s").getCardInt())};
         try {
-            long board_int1 = comparer.get_rank(board1_private, board1_public);
-            long board_int2 = comparer.get_rank(board2_private, board2_public);
+            long board_int1 = compairer.get_rank(board1_private, board1_public);
+            long board_int2 = compairer.get_rank(board2_private, board2_public);
             LOG.info("board1 {} = board2 {}",board_int1,board_int2);
             assertTrue(board_int1 == board_int2);
         } catch (Exception e) {
@@ -260,7 +259,7 @@ public class NormSolverTest {
                 new PrivateCards(Card.strCard2int("6d"), Card.strCard2int("7d"), 1), new PrivateCards(Card.strCard2int("6s"), Card.strCard2int("6d"), 1)};
 
         String logfile_name = "src/test/resources/outputs/outputs_log.txt";
-        Solver solver = new CfrPlusRiverSolver(game_tree, player1Range, player2Range, initialBoard, NormSolverTest.comparer, NormSolverTest.deck
+        Solver solver = new CfrPlusRiverSolver(game_tree, player1Range, player2Range, initialBoard, NormSolverTest.compairer, NormSolverTest.deck
                 , 100, true, 10, logfile_name, DiscountedCfrTrainable.class, MonteCarolAlg.NONE);
         Map train_config = new HashMap();
         solver.train(train_config);
@@ -319,7 +318,7 @@ public class NormSolverTest {
          */
 
         String logfile_name = "src/test/resources/outputs/outputs_log.txt";
-        Solver solver = new CfrPlusRiverSolver(game_tree, player1Range, player2Range, initialBoard, NormSolverTest.comparer
+        Solver solver = new CfrPlusRiverSolver(game_tree, player1Range, player2Range, initialBoard, NormSolverTest.compairer
                 , NormSolverTest.deck, 100, false, 10, logfile_name, DiscountedCfrTrainable.class, MonteCarolAlg.NONE);
         Map train_config = new HashMap();
         solver.train(train_config);
@@ -367,7 +366,7 @@ public class NormSolverTest {
         PrivateCards[] player2Range = PrivateRangeConverter.rangeStr2Cards(player2RangeStr, initialBoard);
 
         String logfile_name = "src/test/resources/outputs/outputs_log.txt";
-        Solver solver = new CfrPlusRiverSolver(game_tree, player1Range, player2Range, initialBoard, NormSolverTest.comparer
+        Solver solver = new CfrPlusRiverSolver(game_tree, player1Range, player2Range, initialBoard, NormSolverTest.compairer
                 , NormSolverTest.deck, 100, false, 10, logfile_name
                 , DiscountedCfrTrainable.class, MonteCarolAlg.NONE);
         Map train_config = new HashMap();
@@ -413,7 +412,7 @@ public class NormSolverTest {
         PrivateCards[] player2Range = PrivateRangeConverter.rangeStr2Cards(player2RangeStr, initialBoard);
 
         String logfile_name = "src/test/resources/outputs/outputs_log.txt";
-        Solver solver = new ParallelCfrPlusSolver(game_tree, player1Range, player2Range, initialBoard, NormSolverTest.comparer
+        Solver solver = new ParallelCfrPlusSolver(game_tree, player1Range, player2Range, initialBoard, NormSolverTest.compairer
                 , NormSolverTest.deck, 31, false, 10, logfile_name, DiscountedCfrTrainable.class
                 , MonteCarolAlg.NONE, -1, 1, 0, 1, 0
         );
@@ -460,7 +459,7 @@ public class NormSolverTest {
         PrivateCards[] player2Range = PrivateRangeConverter.rangeStr2Cards(player2RangeStr, initialBoard);
 
         String logfile_name = "src/test/resources/outputs/outputs_log.txt";
-        Solver solver = new CfrPlusRiverSolver(game_tree, player1Range, player2Range, initialBoard, NormSolverTest.comparer
+        Solver solver = new CfrPlusRiverSolver(game_tree, player1Range, player2Range, initialBoard, NormSolverTest.compairer
                 , NormSolverTest.deck, 31, false, 10, logfile_name, DiscountedCfrTrainable.class, MonteCarolAlg.NONE);
         Map train_config = new HashMap();
         solver.train(train_config);
@@ -504,7 +503,7 @@ public class NormSolverTest {
         PrivateCards[] player2Range = PrivateRangeConverter.rangeStr2Cards(player2RangeStr, initialBoard);
 
         String logfile_name = "src/test/resources/outputs/outputs_log.txt";
-        Solver solver = new CfrPlusRiverSolver(game_tree, player1Range, player2Range, initialBoard, NormSolverTest.comparer
+        Solver solver = new CfrPlusRiverSolver(game_tree, player1Range, player2Range, initialBoard, NormSolverTest.compairer
                 , NormSolverTest.deck, 1000, false, 100, logfile_name, DiscountedCfrTrainable.class
                 , MonteCarolAlg.PUBLIC);
         Map train_config = new HashMap();
@@ -544,7 +543,7 @@ public class NormSolverTest {
         PrivateCards[] player1Range = PrivateRangeConverter.rangeStr2Cards(player1RangeStr, initialBoard);
         PrivateCards[] player2Range = PrivateRangeConverter.rangeStr2Cards(player2RangeStr, initialBoard);
         String logfile_name = "src/test/resources/outputs/outputs_log.txt";
-        Solver solver = new ParallelCfrPlusSolver(game_tree, player1Range, player2Range, initialBoard, NormSolverTest.comparer
+        Solver solver = new ParallelCfrPlusSolver(game_tree, player1Range, player2Range, initialBoard, NormSolverTest.compairer
                 , NormSolverTest.deck, 1000, false, 100, logfile_name, DiscountedCfrTrainable.class
                 , MonteCarolAlg.PUBLIC, -1, 1, 0, 1, 0);
         Map train_config = new HashMap();
@@ -585,7 +584,7 @@ public class NormSolverTest {
         PrivateCards[] player1Range = PrivateRangeConverter.rangeStr2Cards(player1RangeStr, initialBoard);
         PrivateCards[] player2Range = PrivateRangeConverter.rangeStr2Cards(player2RangeStr, initialBoard);
         String logfile_name = "src/test/resources/outputs/outputs_log.txt";
-        Solver solver = new ParallelCfrPlusSolver(game_tree, player1Range, player2Range, initialBoard, NormSolverTest.comparer
+        Solver solver = new ParallelCfrPlusSolver(game_tree, player1Range, player2Range, initialBoard, NormSolverTest.compairer
                 , NormSolverTest.deck, 100, false, 10, logfile_name, DiscountedCfrTrainable.class
                 , MonteCarolAlg.NONE, 2, 1, 0, 1, 0);
         Map train_config = new HashMap();

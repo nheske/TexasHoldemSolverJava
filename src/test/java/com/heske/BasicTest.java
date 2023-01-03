@@ -1,31 +1,22 @@
 package com.heske;
 
 import icybee.solver.*;
-import icybee.solver.comparer.Comparer;
-import icybee.solver.comparer.Dic5Comparer;
+import icybee.solver.compairer.Compairer;
+import icybee.solver.compairer.Dic5Compairer;
 import icybee.solver.exceptions.BoardNotFoundException;
-import icybee.solver.ranges.PrivateCards;
-import icybee.solver.solver.CfrPlusRiverSolver;
-import icybee.solver.solver.MonteCarolAlg;
-import icybee.solver.solver.ParallelCfrPlusSolver;
-import icybee.solver.solver.Solver;
-import icybee.solver.trainable.DiscountedCfrTrainable;
-import icybee.solver.utils.PrivateRangeConverter;
 import org.junit.Before;
 import org.junit.Test;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 
 import java.io.File;
-import java.io.FileWriter;
-import java.io.IOException;
 import java.util.*;
 
 import static org.junit.Assert.assertTrue;
 
 public class BasicTest {
     private static final Logger LOG = LoggerFactory.getLogger(BasicTest.class);
-    static Comparer comparer = null;
+    static Compairer comparer = null;
     static Deck deck = null;
 
     Config loadConfig(String conf_name) {
@@ -85,16 +76,13 @@ public class BasicTest {
         return sb.toString();
     }
 
+
+    //Short deck can only be 6's or above which means where the 2-5's are or the last 16 positions remain 0.
     public Long getRandomEncodedHand() {
-        String ones = "11111";
-        String zeros = "0000000000000000000000000000000000000000000000000000";
-        //if short deck, can only be 6's or above which means many positions have to remain 0
-        //short deck unused positions are where the 2-5's are or the last 16 positions
+        String fiveOf52Cards = "1111100000000000000000000000000000000000000000000000";
+        char[] characters = fiveOf52Cards.toCharArray();
+        //note decksize here keeps us from picking cards that are not in the current deck
         int deckSize = BasicTest.deck.getCards().size();
-        String unrandomizedCards = ones + zeros.substring(0, 52-5);
-//        String unrandomizedCards = ones + zeros.substring(0, deckSize-5);
-        long longRepresentationOfCards = Long.parseLong(unrandomizedCards, 2);
-        char[] characters = unrandomizedCards.toCharArray();
         for (int i = 0; i < deckSize; i++) {
             int randomIndex = (int)(Math.random() * deckSize);
             char temp = characters[i];
@@ -106,36 +94,31 @@ public class BasicTest {
         return number;
     }
 //For a 52 card deck (i.e. not short deck)
-    // for a short deck 6-A there are 16 cards removed so should work with 26 cards and 26 bits for representation
+// for a short deck 6-A there are 16 cards removed so should work with 26 cards and 26 bits for representation
 // note while there are only 2,598,960 different values with 5 1's, using this encoding strategy the range of values extends greater than 2,598,960, e.g. 11111 followed by 47 zeroes is 4362862139015168.
-//    Take a random number n between zero and threshold which will be the number of ones in the string (both ends inclusive)
-//    Create an ArrayList list and add n ones to it.
-//    Then add 9 minus n zeros to the same list
-//    Call Collections.shuffle(list) to randomly shuffle the elements of the list
-//    Convert the list to a String using a StringBuilder
 
     @Test
     public void comparerTest() {
-        Map<Long, Integer> mapCardsToHandValue = Dic5Comparer.getCardslong2rank();
+        Map<Long, Integer> mapCardsToHandValue = Dic5Compairer.getCardslong2rank();
         //quick test to see whether they are using 52 bits of 36 bits
         for (int i=0; i<20; i++){
             Random       random    = new Random();
             List<Long> keys      = new ArrayList<Long>(mapCardsToHandValue.keySet());
             Long       randomHandLong = keys.get( random.nextInt(keys.size()) );
             String randomBinaryString = Long.toBinaryString(randomHandLong);
+            randomBinaryString = padLeftZeros(randomBinaryString, 52);
             Card[] cards;
             try {
                 cards = Card.long2boardCards(randomHandLong);
             } catch (BoardNotFoundException e) {
                 throw new RuntimeException(e);
             }
-            LOG.info("cards {} {}", cards, randomBinaryString);
+            LOG.info("cards:{} bits:{}", cards, randomBinaryString);
         }
-
 
         Long longRepresentationOfCards = getRandomEncodedHand();
         String binaryString = Long.toBinaryString(longRepresentationOfCards);
-        binaryString = padLeftZeros(binaryString, BasicTest.deck.getCards().size());
+        binaryString = padLeftZeros(binaryString, 52);
         // there are 52 choose 5, or 2, 598 960 possible combinations of 5-card poker hands (52 x 51 x 50 x 49 x 48).
 //0000000000000000000000000000000000000000000011110001,154 for 2c-3c-3d-3h-3s
 //0000000000000000000000000000000000010001000100010001,9 for 2c-3c-4c-5c-6c
@@ -152,11 +135,8 @@ public class BasicTest {
         } catch (BoardNotFoundException e) {
             throw new RuntimeException(e);
         }
-        LOG.info("cards {} {}", cards, binaryString);
         int handValue = mapCardsToHandValue.get(longRepresentationOfCards);
-        LOG.info("cards {} {},{} for {}", cards, binaryString, handValue);
-//            1948254208 1985 (first)
-//            15032385539 3011 (last)
+        LOG.info("cards:{} bits:{}, value:{}", cards, binaryString, handValue);
         //get min and max value hands:
         //starts with file (card5_dic_sorted.txt) of all possible 5 card hands.
         // puts each in a Map<Long,Integer> cardslong2rank = (Map<Long,Integer>)new HashMap<Long,Integer>();
@@ -174,9 +154,9 @@ public class BasicTest {
             List<Card> board = Arrays.asList(new Card("6c"), new Card("6d"), new Card("7c"), new Card("7d"), new Card("8s"));
             List<Card> private1 = Arrays.asList(new Card("6h"), new Card("6s"));
             List<Card> private2 = Arrays.asList(new Card("9c"), new Card("9s"));
-            Comparer.CompareResult cr = BasicTest.comparer.compare(private1, private2, board);
+            Compairer.CompairResult cr = BasicTest.comparer.compair(private1, private2, board);
             LOG.info("cardCompareHigherTest result {}", cr);
-            assertTrue(cr == Comparer.CompareResult.LARGER);
+            assertTrue(cr == Compairer.CompairResult.LARGER);
         } catch (Exception e) {
             e.printStackTrace();
             assertTrue(false);
@@ -188,7 +168,7 @@ public class BasicTest {
         List<Card> private1 = Arrays.asList(new Card("6h"), new Card("6s"));
         List<Card> private2 = Arrays.asList(new Card("9c"), new Card("9s"));
         try {
-            Comparer.CompareResult cr = BasicTest.comparer.compare(private1, private2, board);
+            Compairer.CompairResult cr = BasicTest.comparer.compair(private1, private2, board);
         } catch (Exception e) {
             throw new RuntimeException(e);
         }
@@ -200,7 +180,7 @@ public class BasicTest {
             List<Card> board = Arrays.asList(new Card("6c"), new Card("6d"), new Card("7c"), new Card("7d"), new Card("8s"));
             List<Card> private1 = Arrays.asList(new Card("6h"), new Card("6s"));
             List<Card> private2 = Arrays.asList(new Card("9c"), new Card("9s"));
-            Comparer.CompareResult cr = BasicTest.comparer.compare(private1, private2, board);
+            Compairer.CompairResult cr = BasicTest.comparer.compair(private1, private2, board);
 //            LOG.info("compareTest result {}", cr);
             long startTime = System.currentTimeMillis();
             compare();

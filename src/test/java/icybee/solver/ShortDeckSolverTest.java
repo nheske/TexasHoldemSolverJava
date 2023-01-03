@@ -3,7 +3,7 @@ package icybee.solver;
 import static org.junit.Assert.assertTrue;
 
 
-import icybee.solver.comparer.Comparer;
+import icybee.solver.compairer.Compairer;
 import icybee.solver.exceptions.BoardNotFoundException;
 import icybee.solver.ranges.PrivateCards;
 import icybee.solver.solver.CfrPlusRiverSolver;
@@ -31,7 +31,7 @@ public class ShortDeckSolverTest
     /**
      * Rigorous Test :-)
      */
-    static Comparer comparer = null;
+    static Compairer compairer = null;
     static Deck deck = null;
 
     Config loadConfig(String conf_name){
@@ -57,9 +57,9 @@ public class ShortDeckSolverTest
         //String config_name = "yamls/rule_shortdeck_flopsolver.yaml";
         Config config = this.loadConfig(config_name);
 
-        if(ShortDeckSolverTest.comparer == null) {
+        if(ShortDeckSolverTest.compairer == null) {
             try {
-                ShortDeckSolverTest.comparer = SolverEnvironment.compairerFromConfig(config);
+                ShortDeckSolverTest.compairer = SolverEnvironment.compairerFromConfig(config);
                 ShortDeckSolverTest.deck = SolverEnvironment.deckFromConfig(config);
             } catch (Exception e) {
                 e.printStackTrace();
@@ -88,9 +88,9 @@ public class ShortDeckSolverTest
                     new Card("9s")
             );
 
-            Comparer.CompareResult cr = ShortDeckSolverTest.comparer.compare(private1,private2,board);
+            Compairer.CompairResult cr = ShortDeckSolverTest.compairer.compair(private1,private2,board);
             System.out.println(cr);
-            assertTrue(cr == Comparer.CompareResult.LARGER);
+            assertTrue(cr == Compairer.CompairResult.LARGER);
         } catch (Exception e) {
             e.printStackTrace();
             assertTrue(false);
@@ -116,9 +116,9 @@ public class ShortDeckSolverTest
                     new Card("7h")
             );
 
-            Comparer.CompareResult cr = ShortDeckSolverTest.comparer.compare(private1,private2,board);
+            Compairer.CompairResult cr = ShortDeckSolverTest.compairer.compair(private1,private2,board);
             System.out.println(cr);
-            assertTrue(cr == Comparer.CompareResult.EQUAL);
+            assertTrue(cr == Compairer.CompairResult.EQUAL);
         } catch (Exception e) {
             e.printStackTrace();
             assertTrue(false);
@@ -144,9 +144,9 @@ public class ShortDeckSolverTest
                     new Card("7h")
             );
 
-            Comparer.CompareResult cr = ShortDeckSolverTest.comparer.compare(private1,private2,board);
+            Compairer.CompairResult cr = ShortDeckSolverTest.compairer.compair(private1,private2,board);
             System.out.println(cr);
-            assertTrue(cr == Comparer.CompareResult.SMALLER);
+            assertTrue(cr == Compairer.CompairResult.SMALLER);
         } catch (Exception e) {
             e.printStackTrace();
             assertTrue(false);
@@ -167,7 +167,7 @@ public class ShortDeckSolverTest
                 new Card("7s")
         );
 
-        int rank = ShortDeckSolverTest.comparer.get_rank(private_cards,board);
+        int rank = ShortDeckSolverTest.compairer.get_rank(private_cards,board);
         System.out.println(rank);
         assertTrue(rank == 687);
     }
@@ -315,8 +315,8 @@ public class ShortDeckSolverTest
                 (new Card("7s").getCardInt())
         };
         try {
-            long board_int1 = comparer.get_rank(board1_private,board1_public);
-            long board_int2 = comparer.get_rank(board2_private,board2_public);
+            long board_int1 = compairer.get_rank(board1_private,board1_public);
+            long board_int2 = compairer.get_rank(board2_private,board2_public);
             System.out.println(board_int1);
             System.out.println(board_int2);
             assertTrue(board_int1 == board_int2);
@@ -381,7 +381,7 @@ public class ShortDeckSolverTest
                 , player1Range
                 , player2Range
                 , initialBoard
-                , ShortDeckSolverTest.comparer
+                , ShortDeckSolverTest.compairer
                 , ShortDeckSolverTest.deck
                 ,100
                 ,true
@@ -460,7 +460,7 @@ public class ShortDeckSolverTest
                 , player1Range
                 , player2Range
                 , initialBoard
-                , ShortDeckSolverTest.comparer
+                , ShortDeckSolverTest.compairer
                 , ShortDeckSolverTest.deck
                 ,100
                 ,false
@@ -526,7 +526,7 @@ public class ShortDeckSolverTest
                 , player1Range
                 , player2Range
                 , initialBoard
-                , ShortDeckSolverTest.comparer
+                , ShortDeckSolverTest.compairer
                 , ShortDeckSolverTest.deck
                 ,100
                 ,false
@@ -590,7 +590,7 @@ public class ShortDeckSolverTest
                 , player1Range
                 , player2Range
                 , initialBoard
-                , ShortDeckSolverTest.comparer
+                , ShortDeckSolverTest.compairer
                 , ShortDeckSolverTest.deck
                 ,31
                 ,false
@@ -659,7 +659,7 @@ public class ShortDeckSolverTest
                 , player1Range
                 , player2Range
                 , initialBoard
-                , ShortDeckSolverTest.comparer
+                , ShortDeckSolverTest.compairer
                 , ShortDeckSolverTest.deck
                 ,31
                 ,false
@@ -723,7 +723,7 @@ public class ShortDeckSolverTest
                 , player1Range
                 , player2Range
                 , initialBoard
-                , ShortDeckSolverTest.comparer
+                , ShortDeckSolverTest.compairer
                 , ShortDeckSolverTest.deck
                 ,1000
                 ,false
@@ -787,7 +787,7 @@ public class ShortDeckSolverTest
                 , player1Range
                 , player2Range
                 , initialBoard
-                , ShortDeckSolverTest.comparer
+                , ShortDeckSolverTest.compairer
                 , ShortDeckSolverTest.deck
                 ,1000
                 ,false
@@ -856,7 +856,7 @@ public class ShortDeckSolverTest
                 , player1Range
                 , player2Range
                 , initialBoard
-                , ShortDeckSolverTest.comparer
+                , ShortDeckSolverTest.compairer
                 , ShortDeckSolverTest.deck
                 ,100
                 ,false

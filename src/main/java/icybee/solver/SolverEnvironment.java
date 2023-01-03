@@ -1,7 +1,7 @@
 package icybee.solver;
 
-import icybee.solver.comparer.Comparer;
-import icybee.solver.comparer.Dic5Comparer;
+import icybee.solver.compairer.Compairer;
+import icybee.solver.compairer.Dic5Compairer;
 import icybee.solver.solver.GameTreeBuildingSettings;
 
 import java.io.IOException;
@@ -14,12 +14,12 @@ public class SolverEnvironment {
     Config config;
     Deck deck;
 
-    Comparer comparer;
+    Compairer Compairer;
     GameTree game_tree = null;
     static SolverEnvironment se;
 
-    public Comparer getCompairer() {
-        return comparer;
+    public Compairer getCompairer() {
+        return Compairer;
     }
 
     public static SolverEnvironment getInstance(){
@@ -30,7 +30,7 @@ public class SolverEnvironment {
         this.config = config;
         this.deck = new Deck(config.ranks,config.suits);
         if(config.compairer_type.equals("Dic5Compairer")) {
-            this.comparer = new Dic5Comparer(config.compairer_dic_dir,config.compairer_lines);
+            this.Compairer = new Dic5Compairer(config.compairer_dic_dir,config.compairer_lines);
         }else{
             throw new ClassNotFoundException();
         }
@@ -82,23 +82,23 @@ public class SolverEnvironment {
         return new Deck(config.ranks,config.suits);
     }
 
-    public static Comparer compairerFromFile(String compairer_type, String compairer_dic_dir, int compairer_lines)throws IOException{
+    public static Compairer compairerFromFile(String compairer_type, String compairer_dic_dir, int compairer_lines)throws IOException{
         if(compairer_type.equals("Dic5Compairer")) {
-            return new Dic5Comparer(compairer_dic_dir,compairer_lines);
+            return new Dic5Compairer(compairer_dic_dir,compairer_lines);
         }else{
             throw new RuntimeException();
         }
     }
-    public static Comparer compairerFromConfig(Config config)throws IOException{
+    public static Compairer compairerFromConfig(Config config)throws IOException{
         if(config.compairer_type.equals("Dic5Compairer")) {
-            return new Dic5Comparer(config.compairer_dic_dir,config.compairer_lines);
+            return new Dic5Compairer(config.compairer_dic_dir,config.compairer_lines);
         }else{
             throw new RuntimeException();
         }
     }
-    public static Comparer compairerFromConfig(Config config, boolean verbose)throws IOException{
+    public static Compairer compairerFromConfig(Config config, boolean verbose)throws IOException{
         if(config.compairer_type.equals("Dic5Compairer")) {
-            return new Dic5Comparer(config.compairer_dic_dir,config.compairer_lines,verbose);
+            return new Dic5Compairer(config.compairer_dic_dir,config.compairer_lines,verbose);
         }else{
             throw new RuntimeException();
         }

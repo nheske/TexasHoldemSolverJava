@@ -8,7 +8,7 @@ import java.util.Arrays;
 import java.util.HashMap;
 import java.util.Map;
 
-import icybee.solver.comparer.Comparer;
+import icybee.solver.compairer.Compairer;
 import icybee.solver.gui.SolverGui;
 import icybee.solver.ranges.PrivateCards;
 import icybee.solver.solver.CfrPlusRiverSolver;
@@ -151,7 +151,7 @@ public class CommandlineSolver {
 
         Config config = loadConfig(config_file);
         Deck deck = SolverEnvironment.deckFromConfig(config);
-        Comparer comparer = SolverEnvironment.compairerFromConfig(config);
+        Compairer Compairer = SolverEnvironment.compairerFromConfig(config);
         GameTree game_tree = SolverEnvironment.gameTreeFromConfig(config,deck);
 
         PrivateCards[] player1Range = PrivateRangeConverter.rangeStr2Cards(player1_range,initial_board);
@@ -163,7 +163,7 @@ public class CommandlineSolver {
                     , player1Range
                     , player2Range
                     , initial_board
-                    , comparer
+                    , Compairer
                     , deck
                     , iteration_number
                     , debug
@@ -182,7 +182,7 @@ public class CommandlineSolver {
                     , player1Range
                     , player2Range
                     , initial_board
-                    , comparer
+                    , Compairer
                     , deck
                     , iteration_number
                     , debug

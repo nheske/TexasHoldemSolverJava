@@ -1,6 +1,6 @@
 package icybee.solver;
 
-import icybee.solver.comparer.Comparer;
+import icybee.solver.compairer.Compairer;
 import icybee.solver.exceptions.BoardNotFoundException;
 import icybee.solver.ranges.PrivateCards;
 import icybee.solver.solver.CfrPlusRiverSolver;
@@ -30,7 +30,7 @@ public class TexasHoldemSolverTest
     /**
      * Rigorous Test :-)
      */
-    static Comparer comparer = null;
+    static Compairer compairer = null;
     static Deck deck = null;
 
     Config loadConfig(String conf_name){
@@ -56,9 +56,9 @@ public class TexasHoldemSolverTest
         //String config_name = "yamls/rule_shortdeck_flopsolver.yaml";
         Config config = this.loadConfig(config_name);
 
-        if(TexasHoldemSolverTest.comparer == null) {
+        if(TexasHoldemSolverTest.compairer == null) {
             try {
-                TexasHoldemSolverTest.comparer = SolverEnvironment.compairerFromConfig(config);
+                TexasHoldemSolverTest.compairer = SolverEnvironment.compairerFromConfig(config);
                 TexasHoldemSolverTest.deck = SolverEnvironment.deckFromConfig(config);
             } catch (Exception e) {
                 e.printStackTrace();
@@ -87,9 +87,9 @@ public class TexasHoldemSolverTest
                     new Card("9s")
             );
 
-            Comparer.CompareResult cr = TexasHoldemSolverTest.comparer.compare(private1,private2,board);
+            Compairer.CompairResult cr = TexasHoldemSolverTest.compairer.compair(private1,private2,board);
             System.out.println(cr);
-            assertTrue(cr == Comparer.CompareResult.LARGER);
+            assertTrue(cr == Compairer.CompairResult.LARGER);
         } catch (Exception e) {
             e.printStackTrace();
             assertTrue(false);
@@ -107,7 +107,7 @@ public class TexasHoldemSolverTest
 
             
             long startTime = System.currentTimeMillis();
-            Comparer.CompareResult cr = TexasHoldemSolverTest.comparer.compare(private1,private2,board);
+            Compairer.CompairResult cr = TexasHoldemSolverTest.compairer.compair(private1,private2,board);
             System.out.println(cr);
             long endTime = System.currentTimeMillis();
             System.out.println("That took " + (endTime - startTime) + " milliseconds");
@@ -136,9 +136,9 @@ public class TexasHoldemSolverTest
                     new Card("7h")
             );
 
-            Comparer.CompareResult cr = TexasHoldemSolverTest.comparer.compare(private1,private2,board);
+            Compairer.CompairResult cr = TexasHoldemSolverTest.compairer.compair(private1,private2,board);
             System.out.println(cr);
-            assertTrue(cr == Comparer.CompareResult.EQUAL);
+            assertTrue(cr == Compairer.CompairResult.EQUAL);
         } catch (Exception e) {
             e.printStackTrace();
             assertTrue(false);
@@ -164,9 +164,9 @@ public class TexasHoldemSolverTest
                     new Card("7h")
             );
 
-            Comparer.CompareResult cr = TexasHoldemSolverTest.comparer.compare(private1,private2,board);
+            Compairer.CompairResult cr = TexasHoldemSolverTest.compairer.compair(private1,private2,board);
             System.out.println(cr);
-            assertTrue(cr == Comparer.CompareResult.SMALLER);
+            assertTrue(cr == Compairer.CompairResult.SMALLER);
         } catch (Exception e) {
             e.printStackTrace();
             assertTrue(false);
@@ -187,7 +187,7 @@ public class TexasHoldemSolverTest
                 new Card("7s")
         );
 
-        int rank = TexasHoldemSolverTest.comparer.get_rank(private_cards,board);
+        int rank = TexasHoldemSolverTest.compairer.get_rank(private_cards,board);
         System.out.println(rank);
         assertTrue(rank > 0);
     }
@@ -335,8 +335,8 @@ public class TexasHoldemSolverTest
                 (new Card("7s").getCardInt())
         };
         try {
-            long board_int1 = comparer.get_rank(board1_private,board1_public);
-            long board_int2 = comparer.get_rank(board2_private,board2_public);
+            long board_int1 = compairer.get_rank(board1_private,board1_public);
+            long board_int2 = compairer.get_rank(board2_private,board2_public);
             System.out.println(board_int1);
             System.out.println(board_int2);
             assertTrue(board_int1 == board_int2);
@@ -401,7 +401,7 @@ public class TexasHoldemSolverTest
                 , player1Range
                 , player2Range
                 , initialBoard
-                , TexasHoldemSolverTest.comparer
+                , TexasHoldemSolverTest.compairer
                 , TexasHoldemSolverTest.deck
                 ,100
                 ,false
@@ -467,7 +467,7 @@ public class TexasHoldemSolverTest
                 , player1Range
                 , player2Range
                 , initialBoard
-                , TexasHoldemSolverTest.comparer
+                , TexasHoldemSolverTest.compairer
                 , TexasHoldemSolverTest.deck
                 ,100
                 ,false
@@ -531,7 +531,7 @@ public class TexasHoldemSolverTest
                 , player1Range
                 , player2Range
                 , initialBoard
-                , TexasHoldemSolverTest.comparer
+                , TexasHoldemSolverTest.compairer
                 , TexasHoldemSolverTest.deck
                 ,100
                 ,false
@@ -595,7 +595,7 @@ public class TexasHoldemSolverTest
                 , player1Range
                 , player2Range
                 , initialBoard
-                , TexasHoldemSolverTest.comparer
+                , TexasHoldemSolverTest.compairer
                 , TexasHoldemSolverTest.deck
                 ,100
                 ,false
@@ -659,7 +659,7 @@ public class TexasHoldemSolverTest
                 , player1Range
                 , player2Range
                 , initialBoard
-                , TexasHoldemSolverTest.comparer
+                , TexasHoldemSolverTest.compairer
                 , TexasHoldemSolverTest.deck
                 ,100
                 ,false

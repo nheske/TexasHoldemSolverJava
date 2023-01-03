@@ -1,6 +1,6 @@
 package icybee.solver;
 
-import icybee.solver.comparer.Comparer;
+import icybee.solver.compairer.Compairer;
 import icybee.solver.exceptions.BoardNotFoundException;
 import icybee.solver.ranges.PrivateCards;
 import icybee.solver.ranges.RiverCombs;
@@ -14,10 +14,10 @@ public class RiverRangeManager
     Map<Long, RiverCombs[]> p1RiverRanges = new HashMap<>();
     Map<Long, RiverCombs[]> p2RiverRanges = new HashMap<>();
 
-    Comparer handEvaluator;
+    Compairer handEvaluator;
 
-    public RiverRangeManager(Comparer comparer){
-        this.handEvaluator = comparer;
+    public RiverRangeManager(Compairer Compairer){
+        this.handEvaluator = Compairer;
     }
 
     public RiverCombs[] getRiverCombos(int player, RiverCombs[] riverCombos, int[] board) throws BoardNotFoundException

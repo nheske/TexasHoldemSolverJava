@@ -1,4 +1,4 @@
-package icybee.solver.comparer;
+package icybee.solver.compairer;
 
 import java.io.*;
 import java.util.*;
@@ -19,8 +19,8 @@ import org.slf4j.LoggerFactory;
  * Created by huangxuefeng on 2019/10/6.
  * This file contains code for a card compairer
  */
-public class Dic5Comparer extends Comparer {
-    private static final Logger LOG = LoggerFactory.getLogger(Dic5Comparer.class);
+public class Dic5Compairer extends Compairer {
+    private static final Logger LOG = LoggerFactory.getLogger(Dic5Compairer.class);
     //Map<Set<String>,Integer> cards2rank = (Map<Set<String>,Integer>)new HashMap<Set<String>,Integer>();
     static Map<Long,Integer> cardslong2rank = (Map<Long,Integer>)new HashMap<Long,Integer>();
 
@@ -28,12 +28,12 @@ public class Dic5Comparer extends Comparer {
         return cardslong2rank;
     }
 
-    public Dic5Comparer(String dic_dir, int lines) throws IOException {
+    public Dic5Compairer(String dic_dir, int lines) throws IOException {
         super(dic_dir,lines);
         this.load_compairer(dic_dir,lines,true);
     }
 
-    public Dic5Comparer(String dic_dir, int lines, boolean verbose) throws IOException {
+    public Dic5Compairer(String dic_dir, int lines, boolean verbose) throws IOException {
         super(dic_dir,lines);
         this.load_compairer(dic_dir,lines,verbose);
     }
@@ -43,7 +43,7 @@ public class Dic5Comparer extends Comparer {
 
         BufferedReader bufferedReader = new BufferedReader(new FileReader(dic_dir));
         String str;
-        ProgressBar pb = new ProgressBar("Dic5Comparer Load",lines);
+        ProgressBar pb = new ProgressBar("Dic5Compairer Load",lines);
         if (verbose) pb.start();
         int ind = 0;
         while ((str = bufferedReader.readLine()) != null) {
@@ -141,21 +141,21 @@ public class Dic5Comparer extends Comparer {
         return Collections.min(rank_list);
     }
 
-    CompareResult compairRanks(int rank_former, int rank_latter) {
+    CompairResult compairRanks(int rank_former, int rank_latter) {
         if (rank_former < rank_latter) {
             // rank更小的牌更大，0是同花顺
-            return CompareResult.LARGER;
+            return CompairResult.LARGER;
         } else if (rank_former > rank_latter) {
-            return CompareResult.SMALLER;
+            return CompairResult.SMALLER;
         } else {
             // rank_former == rank_latter
-            return CompareResult.EQUAL;
+            return CompairResult.EQUAL;
         }
     }
 
     @Override
     @SuppressWarnings("all")
-    public CompareResult compare(List<Card> private_former, List<Card> private_latter, List<Card> public_board) throws CardsNotFoundException {
+    public CompairResult compair(List<Card> private_former, List<Card> private_latter, List<Card> public_board) throws CardsNotFoundException {
         assert(private_former.size() == 2);
         assert(private_latter.size() == 2);
         assert(public_board.size() == 5);
@@ -169,7 +169,7 @@ public class Dic5Comparer extends Comparer {
 
     }
     @Override
-    public CompareResult compare(int[] private_former, int[] private_latter, int[] public_board) throws CardsNotFoundException, BoardNotFoundException{
+    public CompairResult compair(int[] private_former, int[] private_latter, int[] public_board) throws CardsNotFoundException, BoardNotFoundException{
         assert(private_former.length == 2);
         assert(private_latter.length == 2);
         assert(public_board.length == 5);

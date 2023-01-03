@@ -5,7 +5,7 @@ import icybee.solver.Card;
 import icybee.solver.Deck;
 import icybee.solver.GameTree;
 import icybee.solver.RiverRangeManager;
-import icybee.solver.comparer.Comparer;
+import icybee.solver.compairer.Compairer;
 import icybee.solver.nodes.*;
 import icybee.solver.ranges.PrivateCards;
 import icybee.solver.ranges.PrivateCardsManager;
@@ -28,7 +28,7 @@ public class ParallelCfrPlusSolver extends Solver{
     PrivateCards[] range2;
     int[] initial_board;
     long initial_board_long;
-    Comparer comparer;
+    Compairer Compairer;
 
     Deck deck;
     ForkJoinPool forkJoinPool;
@@ -98,7 +98,7 @@ public class ParallelCfrPlusSolver extends Solver{
             PrivateCards[] range1 ,
             PrivateCards[] range2,
             int[] initial_board,
-            Comparer comparer,
+            Compairer Compairer,
             Deck deck,
             int iteration_number,
             boolean debug,
@@ -128,11 +128,11 @@ public class ParallelCfrPlusSolver extends Solver{
         this.ranges = new PrivateCards[this.player_number][];
         this.ranges[0] = range1;
         this.ranges[1] = range2;
-        this.comparer = comparer;
+        this.Compairer = Compairer;
 
         this.deck = deck;
 
-        this.rrm = new RiverRangeManager(comparer);
+        this.rrm = new RiverRangeManager(Compairer);
         this.iteration_number = iteration_number;
 
         PrivateCards[][] private_cards = new PrivateCards[this.player_number][];
@@ -207,7 +207,7 @@ public class ParallelCfrPlusSolver extends Solver{
         player_privates[0] = pcm.getPreflopCards(0);
         player_privates[1] = pcm.getPreflopCards(1);
 
-        BestResponse br = new BestResponse(player_privates,this.player_number,this.comparer,this.pcm,this.rrm,this.deck,this.debug);
+        BestResponse br = new BestResponse(player_privates,this.player_number,this.Compairer,this.pcm,this.rrm,this.deck,this.debug);
 
         br.printExploitability(tree.getRoot(), 0, tree.getRoot().getPot().floatValue(), initial_board_long);
 

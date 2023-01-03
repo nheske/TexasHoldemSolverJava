@@ -3,7 +3,7 @@ package icybee.solver.solver;
 import icybee.solver.Card;
 import icybee.solver.Deck;
 import icybee.solver.RiverRangeManager;
-import icybee.solver.comparer.Comparer;
+import icybee.solver.compairer.Compairer;
 import icybee.solver.exceptions.BoardNotFoundException;
 import icybee.solver.exceptions.NodeNotFoundException;
 import icybee.solver.nodes.*;
@@ -30,7 +30,7 @@ public class BestResponse {
     PrivateCardsManager pcm;
     boolean debug;
 
-    public BestResponse(PrivateCards[][] private_combos, int player_number, Comparer comparer, PrivateCardsManager pcm, RiverRangeManager rrm, Deck deck, boolean debug) {
+    public BestResponse(PrivateCards[][] private_combos, int player_number, Compairer Compairer, PrivateCardsManager pcm, RiverRangeManager rrm, Deck deck, boolean debug) {
         this.private_combos = private_combos;
         this.player_number = player_number;
         this.rrm = rrm;

@@ -22,5 +22,6 @@ public abstract class Compairer {
     abstract public int get_rank(List<Card> private_hand,List<Card> public_board);
     abstract public int get_rank(int[] private_hand,int[] public_board);
     abstract public int get_rank(long private_hand,long public_board);
+    abstract public int getRank(List<Card> cards);
 }
 

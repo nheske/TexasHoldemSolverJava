@@ -1,10 +1,5 @@
 package icybee.solver.compairer;
 
-import java.io.*;
-import java.util.*;
-import java.util.stream.Collectors;
-import java.util.stream.IntStream;
-
 import icybee.solver.Card;
 import icybee.solver.exceptions.BoardNotFoundException;
 import icybee.solver.exceptions.CardsNotFoundException;
@@ -15,12 +10,19 @@ import org.paukov.combinatorics3.IGenerator;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 
+import java.io.BufferedReader;
+import java.io.FileReader;
+import java.io.IOException;
+import java.util.*;
+import java.util.stream.Collectors;
+import java.util.stream.IntStream;
+
 /**
  * Created by huangxuefeng on 2019/10/6.
  * This file contains code for a card compairer
  */
-public class Dic5Compairer extends Compairer {
-    private static final Logger LOG = LoggerFactory.getLogger(Dic5Compairer.class);
+public class HandEvaluator extends Compairer {
+    private static final Logger LOG = LoggerFactory.getLogger(HandEvaluator.class);
     //Map<Set<String>,Integer> cards2rank = (Map<Set<String>,Integer>)new HashMap<Set<String>,Integer>();
     static Map<Long,Integer> cardslong2rank = (Map<Long,Integer>)new HashMap<Long,Integer>();
 
@@ -28,12 +30,12 @@ public class Dic5Compairer extends Compairer {
         return cardslong2rank;
     }
 
-    public Dic5Compairer(String dic_dir, int lines) throws IOException {
+    public HandEvaluator(String dic_dir, int lines) throws IOException {
         super(dic_dir,lines);
         this.load_compairer(dic_dir,lines,true);
     }
 
-    public Dic5Compairer(String dic_dir, int lines, boolean verbose) throws IOException {
+    public HandEvaluator(String dic_dir, int lines, boolean verbose) throws IOException {
         super(dic_dir,lines);
         this.load_compairer(dic_dir,lines,verbose);
     }

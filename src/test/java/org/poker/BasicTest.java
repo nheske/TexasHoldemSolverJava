@@ -1,4 +1,4 @@
-package com.heske;
+package org.poker;
 
 import icybee.solver.*;
 import icybee.solver.compairer.Compairer;
@@ -34,7 +34,7 @@ public class BasicTest {
 
     @Before
     public void loadEnvironmentsTest() {
-//        String config_name = "yamls/rule_holdem_simple.yaml"; //52 card deck and 2,598,960 5-card combos
+//        String config_name = "yamls/rule_holdem_simple.yaml"; //52 card deck and 2,598,960 (52 choose 5) 5-card combos
 //        String config_name = "yamls/rule_shortdeck_simple.yaml";
         //String config_name = "yamls/rule_shortdeck_turnriversolver.yaml";
         //String config_name = "yamls/rule_shortdeck_turnsolver.yaml";
@@ -45,8 +45,6 @@ public class BasicTest {
             try {
                 BasicTest.comparer = SolverEnvironment.compairerFromConfig(config);
                 BasicTest.deck = SolverEnvironment.deckFromConfig(config);
-                LOG.info("deck size "+BasicTest.deck.getCards().size());
-//                LOG.info("hi");
             } catch (Exception e) {
                 e.printStackTrace();
                 assertTrue(false);
@@ -56,12 +54,30 @@ public class BasicTest {
 
     @Test
     public void someTest() {
-        String[] cardsStrings = {"2c", "2s", "3d", "3h", "4c", "5c", "6d", "7h", "8h", "9h", "Tc", "Jc", "Qc", "Kc", "Ac"};
-        for (String someCardString : cardsStrings) {
-            int someInt = Card.strCard2int(someCardString);
-            LOG.info("card {} int {}", someCardString, someInt);
-            // each card is unique in deck, e.g. 2c=0, 2s=3, 5c=12, Ac=48
-        }
+        List<Card> board = Arrays.asList(new Card("Qh"), new Card("Jh"), new Card("Th"), new Card("8c"), new Card("7d"));
+        List<Card> private_cards = Arrays.asList(new Card("Ah"), new Card("Kh"));
+        int rank = BasicTest.comparer.get_rank(private_cards, board);
+        LOG.info("getRankTest result {}", rank);
+        //TODO make ability to turn a rank into a hand description e.g.
+        //straight flush = xxx+
+        //quads = xxx+
+        //full = xxx+
+        //flush = xxx+
+        //straight = xxx+
+        //2p = xxx+
+        //1p = xxx+
+        List<Card> straightFlush = Arrays.asList(new Card("2h"), new Card("3h"), new Card("4h"), new Card("5c"), new Card("6d"));
+        List<Card> quads = Arrays.asList(new Card("2h"), new Card("2c"), new Card("2d"), new Card("2s"), new Card("6d"));
+        List<Card> full = Arrays.asList(new Card("2h"), new Card("2c"), new Card("2d"), new Card("3s"), new Card("3d"));
+        List<Card> flush = Arrays.asList(new Card("Ah"), new Card("2h"), new Card("3h"), new Card("4h"), new Card("6h"));
+
+//        assertTrue(rank == 687);
+//        String[] cardsStrings = {"2c", "2s", "3d", "3h", "4c", "5c", "6d", "7h", "8h", "9h", "Tc", "Jc", "Qc", "Kc", "Ac"};
+//        for (String someCardString : cardsStrings) {
+//            int someInt = Card.strCard2int(someCardString);
+//            LOG.info("card {} int {}", someCardString, someInt);
+//            // each card is unique in deck, e.g. 2c=0, 2s=3, 5c=12, Ac=48
+//        }
     }
 
     public String padLeftZeros(String inputString, int length) {

@@ -139,6 +139,13 @@ public class HandEvaluator extends Compairer {
         return Collections.min(rank_list);
     }
 
+    @Override
+    public CompairResult compareHands(List<Card> former_cards, List<Card> latter_cards) throws CardsNotFoundException {
+        int rank_former = this.getRank(former_cards);
+        int rank_latter = this.getRank(latter_cards);
+        return compairRanks(rank_former,rank_latter);
+    }
+
     int getRank(int[] cards) throws CardsNotFoundException{
         // inf here
         List<Integer> cards_list = IntStream.of(cards)
@@ -163,7 +170,7 @@ public class HandEvaluator extends Compairer {
         return Collections.min(rank_list);
     }
 
-    CompairResult compairRanks(int rank_former, int rank_latter) {
+    public CompairResult compairRanks(int rank_former, int rank_latter) {
         if (rank_former < rank_latter) {
             // rank更小的牌更大，0是同花顺
             return CompairResult.LARGER;
@@ -174,6 +181,7 @@ public class HandEvaluator extends Compairer {
             return CompairResult.EQUAL;
         }
     }
+
 
     @Override
     @SuppressWarnings("all")

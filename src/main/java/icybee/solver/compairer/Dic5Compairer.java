@@ -40,12 +40,13 @@ public class Dic5Compairer extends Compairer {
 
     public void load_compairer(String dic_dir,int lines,boolean verbose) throws IOException{
         cardslong2rank = (Map<Long,Integer>)new Hashtable<Long,Integer>(lines * 50);
-
         BufferedReader bufferedReader = new BufferedReader(new FileReader(dic_dir));
         String str;
         ProgressBar pb = new ProgressBar("Dic5Compairer Load",lines);
         if (verbose) pb.start();
         int ind = 0;
+
+        long startTime = System.currentTimeMillis();
         while ((str = bufferedReader.readLine()) != null) {
             String[] linesp = str.trim().split(",");
             String cards_str = linesp[0];
@@ -73,6 +74,10 @@ public class Dic5Compairer extends Compairer {
                 if (verbose) pb.stepBy(100);
             }
         }
+        long endTime = System.currentTimeMillis();
+        long duration = (endTime - startTime);
+        LOG.info("Hand Evaluator loaded from file in {} ms", duration);
+
         pb.stop();
     }
 
@@ -160,10 +165,9 @@ public class Dic5Compairer extends Compairer {
         }).collect(Collectors.toList());
         return Collections.min(rank_list);
     }
-
-    CompairResult compairRanks(int rank_former, int rank_latter) {
+    @Override
+    public CompairResult compairRanks(int rank_former, int rank_latter) {
         if (rank_former < rank_latter) {
-            // rank更小的牌更大，0是同花顺
             return CompairResult.LARGER;
         } else if (rank_former > rank_latter) {
             return CompairResult.SMALLER;
@@ -174,6 +178,13 @@ public class Dic5Compairer extends Compairer {
     }
 
     @Override
+    public CompairResult compareHands(List<Card> former_cards, List<Card> latter_cards) throws CardsNotFoundException {
+        int rank_former = this.getRank(former_cards);
+        int rank_latter = this.getRank(latter_cards);
+        return compairRanks(rank_former,rank_latter);
+    }
+
+    @Override
     @SuppressWarnings("all")
     public CompairResult compair(List<Card> private_former, List<Card> private_latter, List<Card> public_board) throws CardsNotFoundException {
         assert(private_former.size() == 2);
@@ -181,12 +192,9 @@ public class Dic5Compairer extends Compairer {
         assert(public_board.size() == 5);
         List<Card> former_cards =  merge(private_former,public_board);
         List<Card> latter_cards =  merge(private_latter,public_board);
-
         int rank_former = this.getRank(former_cards);
         int rank_latter = this.getRank(latter_cards);
-
         return compairRanks(rank_former,rank_latter);
-
     }
     @Override
     public CompairResult compair(int[] private_former, int[] private_latter, int[] public_board) throws CardsNotFoundException, BoardNotFoundException{

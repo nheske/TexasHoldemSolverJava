@@ -1,6 +1,7 @@
 package icybee.solver.compairer;
 
 import icybee.solver.Card;
+import icybee.solver.exceptions.CardsNotFoundException;
 
 import java.io.FileNotFoundException;
 import java.util.List;
@@ -17,6 +18,10 @@ public abstract class Compairer {
         this.dic_dir = dic_dir;
         this.lines = lines;
     }
+    public abstract CompairResult compairRanks(int rank_former, int rank_latter);
+
+    public abstract CompairResult compareHands(List<Card> former_cards, List<Card> latter_cards) throws CardsNotFoundException;
+
     abstract public CompairResult compair(List<Card> private_former, List<Card> private_latter, List<Card> public_board) throws Exception;
     abstract public CompairResult compair(int[] private_former, int[] private_latter, int[] public_board) throws Exception;
     abstract public int get_rank(List<Card> private_hand,List<Card> public_board);

@@ -1,6 +1,7 @@
-package icybee.solver.compairer;
+package org.poker;
 
 import icybee.solver.Card;
+import icybee.solver.compairer.Compairer;
 import icybee.solver.exceptions.BoardNotFoundException;
 import icybee.solver.exceptions.CardsNotFoundException;
 import me.tongfei.progressbar.ProgressBar;
@@ -17,10 +18,6 @@ import java.util.*;
 import java.util.stream.Collectors;
 import java.util.stream.IntStream;
 
-/**
- * Created by huangxuefeng on 2019/10/6.
- * This file contains code for a card compairer
- */
 public class HandEvaluator extends Compairer {
     private static final Logger LOG = LoggerFactory.getLogger(HandEvaluator.class);
     //Map<Set<String>,Integer> cards2rank = (Map<Set<String>,Integer>)new HashMap<Set<String>,Integer>();
